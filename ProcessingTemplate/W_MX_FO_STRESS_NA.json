@@ -1,0 +1,213 @@
+{
+  "description": "12000|FO stress tests",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_VAR_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_VAR_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_EOD_RUN_SA_DRC_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EOD_RUN_SA_DRC_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EOD_RUN_SA_DRC_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+          "predecessor": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EOD_RUN_SA_SBM_CURVATURE_NA",
+      "processingTemplate": "T_MX_EOD_RUN_SA_SBM_CURVATURE_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+          "predecessor": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EOD_RUN_SA_SBM_DELTAVEGARRAO_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EOD_RUN_SA_SBM_DELTAVEGARRAO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EOD_RUN_SA_SBM_DELTAVEGARRAO_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_RUN_SA_SBM_CURVATURE_NA",
+          "predecessor": "T_MX_EOD_RUN_SA_SBM_CURVATURE_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_LAUNCHRUN_ST_NA_PV01_SPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_LAUNCHRUN_ST_NA_PV01_SPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_LAUNCHRUN_ST_NA_PV01_SPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+          "predecessor": "T_MX_VAR_START_FOEOD_ENGINES_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_LOADSOURCE_ST_NA_PV01_SPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_LOADSOURCE_ST_NA_PV01_SPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_LOADSOURCE_ST_NA_PV01_SPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_LAUNCHRUN_ST_NA_PV01_SPR1",
+          "predecessor": "T_MX_NA_ANT_LAUNCHRUN_ST_NA_PV01_SPR1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_START_ALL_ENGINES_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_START_ALL_ENGINES_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_START_ALL_ENGINES_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_RUN_SA_DRC_NA",
+          "predecessor": "T_MX_EOD_RUN_SA_DRC_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_RUN_SA_SBM_DELTAVEGARRAO_NA",
+          "predecessor": "T_MX_EOD_RUN_SA_SBM_DELTAVEGARRAO_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_LOADSOURCE_ST_NA_PV01_SPR1",
+          "predecessor": "T_MX_NA_ANT_LOADSOURCE_ST_NA_PV01_SPR1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "W_MX_VAR_AUX_NA",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "W_MX_VAR_AUX_NA",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}
