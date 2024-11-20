@@ -1,6 +1,7 @@
 {
   "description": "Wait for 10 seconds",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

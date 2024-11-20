@@ -5,6 +5,7 @@
   "highRiskStatisticPeriod": "WEEK",
   "highRiskThreshold": 5,
   "node": "timescape_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "WINDOWS",

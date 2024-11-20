@@ -1,6 +1,7 @@
 {
   "description": "20105|upload of FX fixing 01:15 LATAM indices",
   "folder": "MX_EOD",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

@@ -1,6 +1,7 @@
 {
   "description": "RiskReport Sub-workflow for NA",
   "folder": "MX_EOD",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

@@ -1,5 +1,6 @@
 {
   "description": "FDW Daily batch",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

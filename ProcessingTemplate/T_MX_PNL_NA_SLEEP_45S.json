@@ -2,6 +2,7 @@
   "description": "P&L North America wait 45 seconds to avoid DM corruption",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

@@ -1,5 +1,6 @@
 {
   "description": "DAILY_HIST_CASHFLOW_NF",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

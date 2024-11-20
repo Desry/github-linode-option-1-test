@@ -2,6 +2,7 @@
   "description": "workaround to unconsolidate MRL crosses to avoid position issues",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

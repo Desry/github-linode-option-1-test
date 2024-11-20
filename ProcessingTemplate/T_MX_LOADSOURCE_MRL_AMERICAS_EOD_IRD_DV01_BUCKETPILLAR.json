@@ -2,6 +2,7 @@
   "description": "load MRL_IRDDV01 Bucketpillar NA",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

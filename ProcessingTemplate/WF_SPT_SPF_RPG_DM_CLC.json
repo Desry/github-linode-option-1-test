@@ -4,6 +4,7 @@
   "highRiskStatisticPeriod": "WEEK",
   "highRiskThreshold": 5,
   "lazyLoad": true,
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

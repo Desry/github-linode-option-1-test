@@ -1,6 +1,7 @@
 {
   "description": "12000|Market data copy realtime to DB FO",
   "folder": "MX_EOD",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

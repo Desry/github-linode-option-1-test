@@ -2,6 +2,7 @@
   "description": "BoE for PC RBPL COMMODITY - Pricing Curve NA rename",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

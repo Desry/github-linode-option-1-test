@@ -2,6 +2,7 @@
   "description": "BoF for MR_RMH_TR.REP/MRL_RMH_TR_AS.REP - NA entity",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

@@ -2,6 +2,7 @@
   "description": "copy of the PC_EOD_EUROPE market data set into PC_EOD_NAMERICAS",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

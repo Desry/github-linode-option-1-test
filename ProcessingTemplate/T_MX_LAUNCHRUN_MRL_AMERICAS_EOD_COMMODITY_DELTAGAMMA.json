@@ -2,6 +2,7 @@
   "description": "launchRun_MRL_AMERICAS_EOD_Commodity_DeltaGamma",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

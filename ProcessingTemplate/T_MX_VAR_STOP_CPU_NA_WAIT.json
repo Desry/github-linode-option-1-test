@@ -2,6 +2,7 @@
   "description": "VaR: let the engines stop North America",
   "folder": "MX_INTRADAY",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

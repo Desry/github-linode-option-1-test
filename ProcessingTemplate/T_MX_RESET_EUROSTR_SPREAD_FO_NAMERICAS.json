@@ -2,6 +2,7 @@
   "description": "import the fix spread between eonia and EuroSTR for FO_NAMERICAS",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

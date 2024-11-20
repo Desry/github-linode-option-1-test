@@ -2,6 +2,7 @@
   "description": "load MissSh10D NA|Can only run once for current date, thus shoul",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

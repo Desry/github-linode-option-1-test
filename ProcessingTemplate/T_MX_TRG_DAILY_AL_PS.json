@@ -2,6 +2,7 @@
   "description": "BoE for RPT_TRG_DAILY_ACCRUAL",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

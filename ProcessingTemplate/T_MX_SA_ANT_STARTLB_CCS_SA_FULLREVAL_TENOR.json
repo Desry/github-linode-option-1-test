@@ -2,6 +2,7 @@
   "description": "This command will start calculation set CCS_SA_FullReval_TENOR",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

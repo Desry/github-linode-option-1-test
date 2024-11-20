@@ -2,6 +2,7 @@
   "description": "MX to IPA - SI Trade custom information for IPA Rec - North America entity - feeder",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

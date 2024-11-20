@@ -2,6 +2,7 @@
   "description": "Trade Failed Settlement T-1 feeder for North America",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

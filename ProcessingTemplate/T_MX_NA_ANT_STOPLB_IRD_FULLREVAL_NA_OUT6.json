@@ -2,6 +2,7 @@
   "description": "This command will stop this specific calculation set",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

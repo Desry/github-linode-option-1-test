@@ -2,6 +2,7 @@
   "description": "Risk Daily EOD Reports - LiquidityGap_Cash MRA views - for NA",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

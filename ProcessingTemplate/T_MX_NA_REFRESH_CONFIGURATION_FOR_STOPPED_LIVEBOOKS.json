@@ -2,6 +2,7 @@
   "description": "DEPRECATED v50",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "passBy": true,
   "priority": "0",
   "processingType": "TASK",

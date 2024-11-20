@@ -2,6 +2,7 @@
   "description": "Truncate table PC_CRV_GEN_DET_REP PC_HEDGE_CRV_REP PC_PRICING_CR",
   "folder": "MX_EOD",
   "node": "murex_appserver",
+  "owner": "api_user",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

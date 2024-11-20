@@ -2,6 +2,7 @@
   "highRiskStatisticMethod": "PERCENT",
   "highRiskStatisticPeriod": "WEEK",
   "highRiskThreshold": 5,
+  "owner": "api_user",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",
