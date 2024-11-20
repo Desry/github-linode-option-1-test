@@ -1,0 +1,900 @@
+{
+  "description": "12000|FO Date Move",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "actions": 
+  [
+    {
+      "duration": 3900000,
+      "durationTimeMode": "TIME_SINCE_CREATED",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "NOT_STARTED",
+      "processingCommand": {
+        "notificationChannel": "OBM"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_CLOSEDOWN_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_CLOSEDOWN_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FO_DATEMOVE_EUROPE",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FO_DATEMOVE_EUROPE",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_GENERAL2_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_GENERAL2_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_SPOTDATEROLL_GLOBAL",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_SPOTDATEROLL_GLOBAL",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_FOD_NA_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FOD_NA_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FOD_NA_DATE_MOVE_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_FODIPVNA_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODIPVNA_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODIPVNA_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FOD_NA_DATE_MOVE_AM",
+          "predecessor": "T_MX_FOD_NA_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNACB_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNACB_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNACB_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODIPVNA_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODIPVNA_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAFUT_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAFUT_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAFUT_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNACB_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNACB_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAOUT1_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAOUT1_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAOUT1_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAFUT_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAFUT_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAOUT2_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAOUT2_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAOUT2_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAOUT1_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAOUT1_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAOUT3_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAOUT3_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAOUT3_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAOUT2_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAOUT2_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAOUT4_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAOUT4_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAOUT4_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAOUT3_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAOUT3_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAOUT6_DATE_MOVE_AM",
+      "processingTemplate": "T_MX_FODNAOUT6_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAOUT4_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAOUT4_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAPC_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAPC_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAPC_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAOUT6_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAOUT6_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNASPR1_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNASPR1_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNASPR1_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAPC_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAPC_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNASPR2_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNASPR2_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNASPR2_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNASPR1_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNASPR1_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNASPR3_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNASPR3_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNASPR3_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNASPR2_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNASPR2_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNASPR4_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNASPR4_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNASPR4_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNASPR3_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNASPR3_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNATENOR_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNATENOR_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNATENOR_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNASPR4_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNASPR4_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODRISK1NA_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODRISK1NA_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODRISK1NA_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNATENOR_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNATENOR_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODRISK2NA_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODRISK2NA_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODRISK2NA_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODRISK1NA_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODRISK1NA_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNALIQ_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNALIQ_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNALIQ_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODRISK2NA_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODRISK2NA_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAPC1_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAPC1_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAPC1_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNALIQ_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNALIQ_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAPC2_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAPC2_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAPC2_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAPC1_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAPC1_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODRISK3NA_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODRISK3NA_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODRISK3NA_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAPC2_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAPC2_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAFXSP_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAFXSP_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAFXSP_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODRISK3NA_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODRISK3NA_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNATRG_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNATRG_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNATRG_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAFXSP_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAFXSP_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODR1NA_IM_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODR1NA_IM_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODR1NA_IM_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNATRG_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNATRG_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODNAPC3_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODNAPC3_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODNAPC3_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODR1NA_IM_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODR1NA_IM_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_DS_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_DS_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_DS_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODNAPC3_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODNAPC3_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_DEP_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_DEP_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_DEP_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_DS_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_DS_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_OUT4_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_OUT4_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_OUT4_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_DEP_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_DEP_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_TENOR_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_TENOR_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_TENOR_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_OUT4_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_OUT4_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_IMPACT_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_IMPACT_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_IMPACT_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_TENOR_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_TENOR_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_SCOMP_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_SCOMP_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_SCOMP_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_IMPACT_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_IMPACT_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODR1ZACNA_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODR1ZACNA_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FODR1ZACNA_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_SCOMP_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_SCOMP_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_SPR1_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_SPR1_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_SPR1_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODR1ZACNA_DATE_MOVE_AM",
+          "predecessor": "T_MX_FODR1ZACNA_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IBOR_RISK1_DATE_MOVE_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_IBOR_RISK1_DATE_MOVE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IBOR_RISK1_DATE_MOVE_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_SPR1_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_SPR1_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IPVRW_NA_DATE_MOVE_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_IPVRW_NA_DATE_MOVE_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IPVRW_NA_DATE_MOVE_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IBOR_RISK1_DATE_MOVE_AM",
+          "predecessor": "T_MX_IBOR_RISK1_DATE_MOVE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "description": "Reporting bad data to MQAuto frontend",
+  "lazyLoad": true,
+  "owner": "lpopov",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "MQAuto"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "ignoreCondition": {
+    "criteria": 
+    [
+      {
+        "fieldName": "${message}",
+        "operator": "IS_NULL",
+        "value": null
+      }
+    ],
+    "operator": "AND"
+  },
+  "processingCommand": {
+  },
+  "designParameters": 
+  [
+    {
+      "allowExpressions": true,
+      "defaultValue": "${REQUESTID}",
+      "editorType": "TEXT",
+      "name": "requestid_internal",
+      "required": true,
+      "title": "Request ID"
+    },
+    {
+      "allowExpressions": true,
+      "defaultValue": "${message}",
+      "editorType": "TEXT",
+      "name": "message_internal",
+      "title": "Message"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "MasterSettings.MQAuto.py",
+      "processingTemplate": "MasterSettings.MQAuto.py",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "PYTHON",
+      "ignoreCondition": {
+        "criteria": 
+        [
+          {
+            "fieldName": "${URL_WRONG_DATA}",
+            "operator": "CONTAINS",
+            "value": "mqauto"
+          }
+        ],
+        "operator": "AND"
+      }
+    },
+    {
+      "name": "WrongData.MQAuto.rest",
+      "processingTemplate": "WrongData.MQAuto.rest",
+      "processingType": "TASK",
+      "serverNodeType": "REST_WEB_SERVICE",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "REST_WEB_SERVICE_CALL",
+      "templateParameters": {
+        "REQUESTID": "${REQUESTID}"
+      }
+    }
+  ]
+}

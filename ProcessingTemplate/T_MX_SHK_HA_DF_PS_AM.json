@@ -1,0 +1,20 @@
+{
+  "description": "Shark discount factors feeder + extract America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s SHK_HA_DF_PS_AM -n FODHAID -l ${LOG_FILE}"
+  }
+}

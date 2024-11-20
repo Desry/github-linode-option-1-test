@@ -1,0 +1,21 @@
+{
+  "description": "SPIDER Commodity Gamma North America Extract",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "dormant"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "exit 0\ncd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s SPD_CM_PS_NA_EXT -n FODRISK1NA -l ${LOG_FILE}"
+  }
+}

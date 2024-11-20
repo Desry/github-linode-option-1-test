@@ -1,0 +1,702 @@
+{
+  "description": "12000|Spider sensitivity extracts",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_SPD_FX_DELTA_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_FX_DELTA_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_FX_DELTA_PS_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SPD_FX_D_SIM_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_FX_D_SIM_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_FX_D_SIM_PS_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SPD_CCY_BASIS_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_CCY_BASIS_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_CCY_BASIS_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CCY_B_SIM_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_CCY_B_SIM_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_CCY_B_SIM_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CD01_FEED_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_CD01_FEED_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_CD01_FEED_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CD01_EXT_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_CD01_EXT_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_CD01_EXT_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_CD01_FEED_PS_NA",
+          "predecessor": "T_MX_SPD_CD01_FEED_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CD01_EXT_PS_NA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_CD01_EXT_PS_NA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_CD01_EXT_PS_NA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_CD01_EXT_PS_NA",
+          "predecessor": "T_MX_SPD_CD01_EXT_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CM_PS_NA_FEED",
+      "processingTemplate": "T_MX_SPD_CM_PS_NA_FEED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CM_PS_NA_EXT",
+      "processingTemplate": "T_MX_SPD_CM_PS_NA_EXT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_CM_PS_NA_FEED",
+          "predecessor": "T_MX_SPD_CM_PS_NA_FEED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_CM_PS_NA_EXT_RENAME",
+      "processingTemplate": "T_MX_SPD_CM_PS_NA_EXT_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_CM_PS_NA_EXT",
+          "predecessor": "T_MX_SPD_CM_PS_NA_EXT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_FXG_RISK_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_FXG_RISK_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_FXG_RISK_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_INFL_DELTA_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_INFL_DELTA_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_INFL_DELTA_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_IR_DV01_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_IR_DV01_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_IR_DV01_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_IR_DV01_R2_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_IR_DV01_R2_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_IR_DV01_R2_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_IR_DV_SIM_PS_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_IR_DV_SIM_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_IR_DV_SIM_PS_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_VG_FEED_PS_NA",
+      "processingTemplate": "T_MX_SPD_VG_FEED_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_VG_EXT_PS_NA",
+      "processingTemplate": "T_MX_SPD_VG_EXT_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_VG_FEED_PS_NA",
+          "predecessor": "T_MX_SPD_VG_FEED_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_VG_EXT_PS_NA_RENAME",
+      "processingTemplate": "T_MX_SPD_VG_EXT_PS_NA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_VG_EXT_PS_NA",
+          "predecessor": "T_MX_SPD_VG_EXT_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_VS_FEED_PS_NA",
+      "processingTemplate": "T_MX_SPD_VS_FEED_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_VS_EXT_PS_NA",
+      "processingTemplate": "T_MX_SPD_VS_EXT_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_VS_FEED_PS_NA",
+          "predecessor": "T_MX_SPD_VS_FEED_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_VS_EXT_PS_NA_RENAME",
+      "processingTemplate": "T_MX_SPD_VS_EXT_PS_NA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_VS_EXT_PS_NA",
+          "predecessor": "T_MX_SPD_VS_EXT_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_ZS01_PS_NA_FEED",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_ZS01_PS_NA_FEED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_ZS01_PS_NA_FEED",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "predecessor": "T_MX_SPIDER_SENSIT_EXTRACTS_NA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPD_ZS01_PS_NA_EXT",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPD_ZS01_PS_NA_EXT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPD_ZS01_PS_NA_EXT",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_ZS01_PS_NA_FEED",
+          "predecessor": "T_MX_SPD_ZS01_PS_NA_FEED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPIDER_RENAME2_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPIDER_RENAME2_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPIDER_RENAME2_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_IR_DV01_R2_PS_NA",
+          "predecessor": "T_MX_SPD_IR_DV01_R2_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPIDER_SENSITIVITY_RENAME_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPIDER_SENSITIVITY_RENAME_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPIDER_SENSITIVITY_RENAME_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_CCY_BASIS_PS_NA",
+          "predecessor": "T_MX_SPD_CCY_BASIS_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_FX_DELTA_PS_NA",
+          "predecessor": "T_MX_SPD_FX_DELTA_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_FXG_RISK_PS_NA",
+          "predecessor": "T_MX_SPD_FXG_RISK_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_IR_DV01_PS_NA",
+          "predecessor": "T_MX_SPD_IR_DV01_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_ZS01_PS_NA_EXT",
+          "predecessor": "T_MX_SPD_ZS01_PS_NA_EXT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPIDER_SENSITIVITY_RENAME_2_NA",
+      "processingTemplate": "T_MX_SPIDER_SENSITIVITY_RENAME_2_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPIDER_SENSITIVITY_RENAME_2_NA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPIDER_SENSITIVITY_RENAME_NA",
+          "predecessor": "T_MX_SPIDER_SENSITIVITY_RENAME_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPIDER_SENSITIVITY_SIM_RENAME_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPIDER_SENSITIVITY_SIM_RENAME_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPIDER_SENSITIVITY_SIM_RENAME_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_CCY_B_SIM_PS_NA",
+          "predecessor": "T_MX_SPD_CCY_B_SIM_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_FX_D_SIM_PS_NA",
+          "predecessor": "T_MX_SPD_FX_D_SIM_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_INFL_DELTA_PS_NA",
+          "predecessor": "T_MX_SPD_INFL_DELTA_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPD_IR_DV_SIM_PS_NA",
+          "predecessor": "T_MX_SPD_IR_DV_SIM_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

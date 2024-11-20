@@ -1,0 +1,92 @@
+{
+  "description": "12000|Risk reporting America - market risk limits tasks",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_ML_NA_LIMACTIVE_PS",
+      "processingTemplate": "T_MX_ML_NA_LIMACTIVE_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_MR_DATES_NA_LIM_PS",
+      "processingTemplate": "T_MX_MR_DATES_NA_LIM_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_ML_NA_LIMACTIVE_PS",
+          "predecessor": "T_MX_ML_NA_LIMACTIVE_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CL_NA_LIM_AUDIT_PS",
+      "processingTemplate": "T_MX_CL_NA_LIM_AUDIT_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_DATES_NA_LIM_PS",
+          "predecessor": "T_MX_MR_DATES_NA_LIM_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CL_NA_LIM_ACTIVE_PS",
+      "processingTemplate": "T_MX_CL_NA_LIM_ACTIVE_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CL_NA_LIM_AUDIT_PS",
+          "predecessor": "T_MX_CL_NA_LIM_AUDIT_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

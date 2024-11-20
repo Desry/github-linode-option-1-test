@@ -1,0 +1,113 @@
+{
+  "description": "12000|Market data copy realtime to DB FO",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_NA_PSC_MD_IMP_FXSP_FO_NA",
+      "processingTemplate": "T_MX_NA_PSC_MD_IMP_FXSP_FO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_NA_PSC_MD_IMP_FXSW_FO_NA",
+      "processingTemplate": "T_MX_NA_PSC_MD_IMP_FXSW_FO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_PSC_MD_IMP_FXSP_FO_NA",
+          "predecessor": "T_MX_NA_PSC_MD_IMP_FXSP_FO_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_PSC_MD_IMP_GMP_FO_NA",
+      "processingTemplate": "T_MX_NA_PSC_MD_IMP_GMP_FO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_PSC_MD_IMP_FXSW_FO_NA",
+          "predecessor": "T_MX_NA_PSC_MD_IMP_FXSW_FO_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_PSC_MD_IMP_RTSH_FO_NA",
+      "processingTemplate": "T_MX_NA_PSC_MD_IMP_RTSH_FO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_PSC_MD_IMP_GMP_FO_NA",
+          "predecessor": "T_MX_NA_PSC_MD_IMP_GMP_FO_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_PSC_MD_IMP_SCPR_FO_NA",
+      "processingTemplate": "T_MX_NA_PSC_MD_IMP_SCPR_FO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_PSC_MD_IMP_RTSH_FO_NA",
+          "predecessor": "T_MX_NA_PSC_MD_IMP_RTSH_FO_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

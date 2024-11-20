@@ -1,0 +1,20 @@
+{
+  "description": "Hedge curve extraction for RISK sets for TimeScape - N America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s TS_CRV_RISK_PS_AM -n FODRISK2NA -l ${LOG_FILE}"
+  }
+}

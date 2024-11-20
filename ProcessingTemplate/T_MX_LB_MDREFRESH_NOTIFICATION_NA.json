@@ -1,0 +1,21 @@
+{
+  "description": "send email about Livebook market data refresh for North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "no_script"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "#!/bin/ksh\necho \"getting the reporting date\"\necho \"content of the file:\"\ncat ${HOME}/integration/ReportingDate/Common/Reporting_Date.txt\nREPORTING_DATE=`cat ${HOME}/integration/ReportingDate/Common/Reporting_Date.txt`\necho \"displaying the reporting date\"\necho \"$REPORTING_DATE\"\necho \"sending the email to nytrading@rabobank.com,fm.global.MurexITSupport@rabobank.com\"\necho \"Market Data is refreshed for livebook flash PL North America on $MX_ENVIRONMENT. This is the offical EOD Market Data.\"| mailx -s \"$MX_ENVIRONMENT: Market Data refreshed per $REPORTING_DATE for Flashbook pnl North America\" nytrading@rabobank.com,fm.global.MurexITSupport@rabobank.com"
+  }
+}

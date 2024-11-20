@@ -1,0 +1,20 @@
+{
+  "description": "Truncate table PC_CRV_GEN_DET_REP PC_HEDGE_CRV_REP PC_PRICING_CR",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/Purge\n./Truncate_Tables.sh -d DM -t \"PC_CRV_GEN_DET_REP PC_HEDGE_CRV_REP PC_PRICING_CRV_REP PC_RT_CRV_ASSIGN_REP\""
+  }
+}

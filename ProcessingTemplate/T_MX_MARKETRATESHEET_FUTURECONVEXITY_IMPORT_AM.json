@@ -1,0 +1,20 @@
+{
+  "description": "Import of future convexity spreads North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData\n./GlobalMarketDataExecute.sh -update -type:marketratesheet -file:PC_EOD_NAMERICAS_futureconvexity_marketratesheet -date:TODAY -mds:PC_EOD_NAMERICAS  -answer:answer_update_futureconvexity_marketratesheet_PC_EOD_NAMERICAS -log:log_update_futureconvexity_marketratesheet_PC_EOD_NAMERICAS"
+  }
+}

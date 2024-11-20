@@ -1,0 +1,80 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "CLC"
+  ],
+  "workflowType": "CYCLE",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "checkBeforeFirstRun": true,
+    "cycleCondition": {
+      "criteria": 
+      [
+        {
+          "fieldName": "${VAR_SPT_SPF_RPG_SBX_ALLOWED}",
+          "operator": "EQ",
+          "value": "${VAR_YES}"
+        }
+      ],
+      "operator": "AND"
+    },
+    "cycleDelay": 120000,
+    "cycleDelayMode": "FINISH_TO_START",
+    "cycleFailMode": "RESTART_NONE",
+    "cycleType": "WHILE"
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "name": "VAR_SPT_SPF_RPG_SBX_ALLOWED",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "resource": "VAR_SPT_SPF_RPG_SBX_ALLOWED",
+      "resourceType": "VARIABLE",
+      "value": "${VAR_YES}",
+      "valueOperator": "EQ",
+      "workflowType": "CYCLE"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "CLC",
+      "editorType": "TEXT",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC etc.,)"
+    },
+    {
+      "defaultValue": "SPF",
+      "editorType": "TEXT",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "WF_SPT_SPF_DM_RPG_TRIGGER_CLC",
+      "processingTemplate": "WF_SPT_SPF_DM_RPG_TRIGGER_CLC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "WF_SPT_SPF_DM_RPG_TRIGGER_CLC",
+      "workflowType": "STANDARD"
+    }
+  ]
+}

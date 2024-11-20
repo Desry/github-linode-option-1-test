@@ -1,0 +1,20 @@
+{
+  "description": "Hedge curve export maturity conversion (from O/N to 1D)",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData/\n./ChangeMaturity.sh -file:hedgecurve -region:namericas -maturity:O/N=1D -copyToResult:Yes"
+  }
+}

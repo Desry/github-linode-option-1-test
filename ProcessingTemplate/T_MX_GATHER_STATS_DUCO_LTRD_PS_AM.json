@@ -1,0 +1,20 @@
+{
+  "description": "gather statistics for DUCO_LTRD_REP - North America entity",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts/maintenance\nsource /appl/murex/config/$MX_ENVIRONMENT.env.conf\nsqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM DUCO_LTRD_REP"
+  }
+}

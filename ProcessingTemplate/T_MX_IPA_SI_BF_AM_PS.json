@@ -1,0 +1,20 @@
+{
+  "description": "MX to IPA - SI Trade custom information for IPA Rec - North America entity - feeder",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s IPA_SI_BF_AM_PS -n SYS_MO -l ${LOG_FILE}"
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "description": "12000|RBPL reports North America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_DMT_RBPL_NA_H_Y",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_RBPL_NA_H_Y",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_RBPL_NA_H_Y",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_DMT_RBPL_NA_P_Y",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_RBPL_NA_P_Y",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_RBPL_NA_P_Y",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_EXT_RBPL_NA_H",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_RBPL_NA_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_RBPL_NA_H",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_RBPL_NA_H_Y",
+          "predecessor": "T_MX_DMT_RBPL_NA_H_Y",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_RBPL_NA_H_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_RBPL_NA_H_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_RBPL_NA_H_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_RBPL_NA_H",
+          "predecessor": "T_MX_EXT_RBPL_NA_H",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_RBPL_NA_H_RENAME2",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_RBPL_NA_H_RENAME2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_RBPL_NA_H_RENAME2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_RBPL_NA_H_RENAME",
+          "predecessor": "T_MX_EXT_RBPL_NA_H_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_RBPL_NA_P",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_RBPL_NA_P",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_RBPL_NA_P",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_RBPL_NA_P_Y",
+          "predecessor": "T_MX_DMT_RBPL_NA_P_Y",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_RBPL_NA_P_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_RBPL_NA_P_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_RBPL_NA_P_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_RBPL_NA_P",
+          "predecessor": "T_MX_EXT_RBPL_NA_P",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_RBPL_NA_P_RENAME2",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_RBPL_NA_P_RENAME2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_RBPL_NA_P_RENAME2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_RBPL_NA_P_RENAME",
+          "predecessor": "T_MX_EXT_RBPL_NA_P_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RBPL_NA_COM_H_F_RENAME",
+      "processingTemplate": "T_MX_RBPL_NA_COM_H_F_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_RBPL_NA_COM_H_F_RENAME",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_RBPL_NA_H",
+          "predecessor": "T_MX_EXT_RBPL_NA_H",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RBPL_NA_COM_P_F_RENAME",
+      "processingTemplate": "T_MX_RBPL_NA_COM_P_F_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_RBPL_NA_COM_P_F_RENAME",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_RBPL_NA_P",
+          "predecessor": "T_MX_EXT_RBPL_NA_P",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

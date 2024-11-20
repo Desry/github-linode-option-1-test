@@ -1,0 +1,20 @@
+{
+  "description": "run MRL_FXDel NA",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./antRequestWrapper.sh -m public.mxres.mxmarketrisk_service.scripts.ant-targets-sources-Rabo-MarketRisk.mxres -t launchRun_MRL_AMERICAS_EOD_FXDelta -l ${LOG_FILE}"
+  }
+}

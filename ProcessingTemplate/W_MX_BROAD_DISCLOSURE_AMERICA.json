@@ -1,0 +1,91 @@
+{
+  "description": "12000|Broad Disclosure reports",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_CLOSEDOWN_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_CLOSEDOWN_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FIXING_FX_0115UT",
+      "parent": "2a80a2d3-cb6f-4469-9fe6-583065e01353",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FIXING_FX_0115UT",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FIXING_FX_0115UT",
+      "parent": "2a80a2d3-cb6f-4469-9fe6-583065e01353",
+      "processingStatus": "FAILED",
+      "processingTemplate": "W_MX_FIXING_FX_0115UT",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "OR",
+      "groupId": "2a80a2d3-cb6f-4469-9fe6-583065e01353",
+      "name": "OR",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_1",
+      "processingTemplate": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_1",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_1",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_2",
+      "processingTemplate": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_2",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_2",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_1",
+          "predecessor": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_1",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

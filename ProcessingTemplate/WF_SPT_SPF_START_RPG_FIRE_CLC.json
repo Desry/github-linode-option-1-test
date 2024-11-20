@@ -1,0 +1,148 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "lazyLoad": true,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "CLC"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "CLC",
+      "editorType": "TEXT",
+      "hint": "Occurrence of this workflow (DLY, CLC, etc.)",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC, etc.)"
+    },
+    {
+      "defaultValue": "SPF",
+      "editorType": "TEXT",
+      "hint": "REGION for which this workflow has to run",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_UPDATE_RUNNING",
+      "processingTemplate": "TJ_SPT_RPG_UPDATE_RUNNING",
+      "processingType": "TASK",
+      "serverNodeType": "ORACLE",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "RDBMS_SQL_STATEMENT",
+      "title": "JO_SPT_SPF_RPG_FIRE_UPDATE_RUNNING_CLC"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "WF_FDW_SPF_RPG_OHO_FILES_CLC",
+      "processingTemplate": "WF_FDW_SPF_RPG_OHO_FILES_CLC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "WF_FDW_SPF_RPG_OHO_FILES_CLC",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_UPDATE_RUNNING",
+          "predecessor": "TJ_SPT_RPG_UPDATE_RUNNING",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "ORACLE",
+          "taskType": "RDBMS_SQL_STATEMENT"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_SPT_SPF_DM_DLY",
+          "parent": "c764eaaf-734b-4f56-9eea-27bc14564254",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_SPT_SPF_DM_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_SPT_SPF_LOAD_DM_MLY",
+          "parent": "c764eaaf-734b-4f56-9eea-27bc14564254",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_SPT_SPF_LOAD_DM_MLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_SPT_SPF_START_RPG_DM_CLC",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "WF_SPT_SPF_START_RPG_DM_CLC",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "NOR",
+          "groupId": "c764eaaf-734b-4f56-9eea-27bc14564254",
+          "name": "NOR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_UPDATE_FINISHED",
+      "processingTemplate": "TJ_SPT_RPG_UPDATE_FINISHED",
+      "processingType": "TASK",
+      "serverNodeType": "ORACLE",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "RDBMS_SQL_STATEMENT",
+      "title": "JO_SPT_SPF_RPG_FIRE_UPDATE_FINISHED_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "WF_FDW_SPF_RPG_OHO_FILES_CLC",
+          "predecessor": "WF_FDW_SPF_RPG_OHO_FILES_CLC",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

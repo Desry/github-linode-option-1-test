@@ -1,0 +1,126 @@
+{
+  "description": "DAILY_HIST_CASHFLOW_NF",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "DLY"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "WF_FDW_CHL_CORE_DER_DLY",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "WF_FDW_CHL_CORE_DER_DLY",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "DLY",
+      "editorType": "TEXT",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC etc.,)"
+    },
+    {
+      "defaultValue": "CHL",
+      "editorType": "TEXT",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "TJ_FDW_INS_INT_RATE_SCHEDULES_H",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_INS_INT_RATE_SCHEDULES_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHL_INS_INT_RATE_SCHEDULES_H_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_FDW_CASHFLOW_TRADES_H",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_CASHFLOW_TRADES_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHL_CASHFLOW_TRADES_H_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_FDW_TDE_LEG_INT_R_SCHEDULES_H",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_TDE_LEG_INT_R_SCHEDULES_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHL_TDE_LEG_INT_R_SCHEDULES_H_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_FDW_TDE_LEG_PMNT_SCHEDULES_H",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_TDE_LEG_PMNT_SCHEDULES_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHL_TDE_LEG_PMNT_SCHEDULES_H_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_FDW_INSTR_PAYMENT_SCHEDULES_H",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_INSTR_PAYMENT_SCHEDULES_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHL_INSTR_PAYMENT_SCHEDULES_H_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_FDW_CASHFLOW_INSTRUMENTS_H",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_CASHFLOW_INSTRUMENTS_H",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHL_CASHFLOW_INSTRUMENTS_H_DLY",
+      "weight": "1"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "description": "Generic sleep task",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "sleep"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "sleep ${WAIT_SECONDS}"
+  },
+  "designParameters": 
+  [
+    {
+      "defaultValue": "10",
+      "editorType": "NUMBER",
+      "name": "WAIT_SECONDS",
+      "required": true,
+      "title": "WAIT_SECONDS"
+    }
+  ]
+}

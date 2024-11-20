@@ -1,0 +1,355 @@
+{
+  "description": "12000|VaR missing shifts, Spider extracts",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_VAR_AMERICA.T_MX_VAR_NA_CHECKPOINT",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_VAR_AMERICA",
+      "workflowTemplateItem": "T_MX_VAR_NA_CHECKPOINT"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_VAR_MS_10D_SQL_NA_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS_10D_SQL_NA_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS_10D_SQL_NA_PS",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_VAR_MS_10D_FIL_NA_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS_10D_FIL_NA_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS_10D_FIL_NA_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS_10D_SQL_NA_PS",
+          "predecessor": "T_MX_VAR_MS_10D_SQL_NA_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LOADSOURCE_MISSING_VARIATIONS_10D_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LOADSOURCE_MISSING_VARIATIONS_10D_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LOADSOURCE_MISSING_VARIATIONS_10D_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS_10D_FIL_NA_PS",
+          "predecessor": "T_MX_VAR_MS_10D_FIL_NA_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_10D_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_10D_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_10D_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LOADSOURCE_MISSING_VARIATIONS_10D_NA",
+          "predecessor": "T_MX_LOADSOURCE_MISSING_VARIATIONS_10D_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_MS10DAY_FEEDER_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS10DAY_FEEDER_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS10DAY_FEEDER_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_10D_NA",
+          "predecessor": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_10D_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_MS_1D_SQL_NA_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS_1D_SQL_NA_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS_1D_SQL_NA_PS",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_VAR_MS_1D_FIL_NA_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS_1D_FIL_NA_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS_1D_FIL_NA_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS_1D_SQL_NA_PS",
+          "predecessor": "T_MX_VAR_MS_1D_SQL_NA_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LOADSOURCE_MISSING_VARIATIONS_1D_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LOADSOURCE_MISSING_VARIATIONS_1D_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LOADSOURCE_MISSING_VARIATIONS_1D_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS_1D_FIL_NA_PS",
+          "predecessor": "T_MX_VAR_MS_1D_FIL_NA_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_1D_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_1D_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_1D_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LOADSOURCE_MISSING_VARIATIONS_1D_NA",
+          "predecessor": "T_MX_LOADSOURCE_MISSING_VARIATIONS_1D_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_MS1DAY_FEEDER_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS1DAY_FEEDER_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS1DAY_FEEDER_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_1D_NA",
+          "predecessor": "T_MX_NA_ANT_LOADSOURCE_MISSING_SHIFTS_1D_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_MS1DAY_EXTRACT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS1DAY_EXTRACT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS1DAY_EXTRACT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS10DAY_FEEDER_AM",
+          "predecessor": "T_MX_VAR_MS10DAY_FEEDER_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS1DAY_FEEDER_AM",
+          "predecessor": "T_MX_VAR_MS1DAY_FEEDER_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_MS10DAY_EXTRACT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MS10DAY_EXTRACT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MS10DAY_EXTRACT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS1DAY_EXTRACT_AM",
+          "predecessor": "T_MX_VAR_MS1DAY_EXTRACT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_MSXXDAY_RENAME_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_MSXXDAY_RENAME_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_MSXXDAY_RENAME_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MS10DAY_EXTRACT_AM",
+          "predecessor": "T_MX_VAR_MS10DAY_EXTRACT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_VAR_REV_CHECK_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_VAR_REV_CHECK_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_VAR_REV_CHECK_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_VAR_MSXXDAY_RENAME_AM",
+          "predecessor": "T_MX_VAR_MSXXDAY_RENAME_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "node": "t24_appserver",
+  "owner": "Glen.Franklin@rabobank.com",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "WINDOWS",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "T24PreProd"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "@ECHO OFF\npushd e:\\\n\nIF NOT EXIST LongRunningQueriesExist.flg GOTO NotFoundIt\necho \"!!!! LongRunningQueriesExist.flg found escalate to support !!!!\"\n\necho Deleting LongRunningQueriesExist.flg\necho ------------------------------\ndel e:\\LongRunningQueriesExist.flg\n\nexit /b 1\n\n:NotFoundIt\necho File LongRunningQueriesExist.flg Not Found\n\nset resexe=0"
+  }
+}

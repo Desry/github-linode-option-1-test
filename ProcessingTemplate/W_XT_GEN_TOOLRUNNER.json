@@ -1,0 +1,47 @@
+{
+  "folder": "XT_ARTS_HQLA",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "designParameters": 
+  [
+    {
+      "editorType": "TEXT",
+      "name": "ToolName",
+      "required": true,
+      "title": "ToolName"
+    },
+    {
+      "allowExpressions": true,
+      "editorType": "TEXT",
+      "name": "ToolParameters",
+      "required": true,
+      "title": "ToolParameters"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_XT_GEN_TOOLRUNNER",
+      "priority": "0",
+      "processingTemplate": "T_XT_GEN_TOOLRUNNER",
+      "processingType": "TASK",
+      "serverNodeType": "WINDOWS",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_XT_GEN_TOOLRUNNER",
+      "weight": "1"
+    }
+  ]
+}

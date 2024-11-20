@@ -1,0 +1,20 @@
+{
+  "description": "This command will start calculation set CCS_SA_FullReval_TENOR",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./lbkRequestWrapper.sh -b CCS_SA -s start -c CCS_SA_FullReval_TENOR -l ${LOG_FILE}"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "GCD Failed Settlement feeder for North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s GCD_FAIL_SETL_PS_AM -n SYS_MO -l ${LOG_FILE} 2>&1"
+  }
+}

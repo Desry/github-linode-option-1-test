@@ -1,0 +1,20 @@
+{
+  "description": "Export of Revaluation rate curve export PC_SOD_NAMERICAS",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData\n./GlobalMarketDataExecute.sh -query -type:revaluationratecurve -mds:PC_SOD_NAMERICAS -body:body_FO_NA"
+  }
+}

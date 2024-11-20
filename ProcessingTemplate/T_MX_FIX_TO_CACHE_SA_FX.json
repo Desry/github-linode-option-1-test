@@ -1,0 +1,20 @@
+{
+  "description": "update cache with fixing FX for SA",
+  "folder": "MX_INTRADAY",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "INTRADAY"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s FIX_TO_CACHE_SA_FX -n SYS_MO -l ${LOG_FILE}"
+  }
+}

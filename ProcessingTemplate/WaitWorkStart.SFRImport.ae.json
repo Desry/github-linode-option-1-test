@@ -1,0 +1,37 @@
+{
+  "owner": "mslebodn",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "INTERNAL",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "SFRImport",
+    "NotMonitored"
+  ],
+  "taskType": "AE_SCRIPT",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": ":SET &NOW# = SYS_TIMESTAMP_PHYSICAL(\"UTC\")\n:IF &WORK_START# > &NOW# \n:  P \"Work Start is in future &WORK_START# > &NOW#\"\n:  STOP MSG, 51, \"Restart in 10 min\"\n:ENDIF"
+  },
+  "actions": 
+  [
+    {
+      "processingActionType": "RESTART",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_FAILED",
+      "processingCommand": {
+        "actionTargetType": "SELF",
+        "keepForcedStatus": true,
+        "restartDelay": 600000,
+        "restartDelayMode": "FINISH_TO_START",
+        "restartDuration": 2592000000,
+        "restartFailedOnly": true,
+        "restartMode": "TIME",
+        "restartType": "RESTART_FROM_BEGINNING"
+      }
+    }
+  ]
+}

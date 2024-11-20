@@ -1,0 +1,28 @@
+{
+  "endpointType": "USER",
+  "folder": "XT_CRIS_REUTERS_FIX_1830_DOWNLOAD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "timescape_appserver",
+  "owner": "Rob.Trocha",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "WINDOWS",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "Echo on\n${XT_FILEWATCHER} file=${FileWatcherFileName} ${FileWatcherOptions}\nEcho off\nset retcode=%errorlevel%\necho FileWatcher ended with return code: %retcode%\nIF %retcode% EQU 0 GOTO NORMALFLOW\nGOTO ERRORFLOW\n:NORMALFLOW\nset resexe=0\nGOTO END\n:ERRORFLOW\nIF \"${FailOnNotFound}\" EQU \"true\" ( \n  echo FailOnNotFound is set to true, setting resexe=2\n  set resexe=2\n) ELSE ( \n  echo FailOnNotFound is not set or not set to true, setting resexe=0\n  set resexe=0\n)\nGOTO END\n:END\nexit %resexe%"
+  },
+  "designParameters": 
+  [
+    {
+      "editorType": "TEXT",
+      "name": "FailOnNotFound",
+      "title": "FailOnNotFound"
+    }
+  ]
+}

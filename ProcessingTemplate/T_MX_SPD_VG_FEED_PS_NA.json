@@ -1,0 +1,21 @@
+{
+  "description": "Spider Sensitivities Vega feeder - North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "dormant"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "exit 0\ncd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s SPD_VG_FEED_PS_NA -n FODRISK1NA -l ${LOG_FILE}"
+  }
+}

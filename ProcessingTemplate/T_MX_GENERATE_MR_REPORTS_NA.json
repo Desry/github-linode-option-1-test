@@ -1,0 +1,21 @@
+{
+  "description": "Risk Reporting PDF generation for North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd /appl/murex/risk_reporting\nsource venv/bin/activate\npython generate_market_risk_reports.py MR AMERICAS"
+  }
+}

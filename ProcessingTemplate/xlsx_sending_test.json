@@ -1,0 +1,24 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "MONTH",
+  "owner": "Prokop",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "INTERNAL",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "ADHOC_REPORT_SEND",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "contentType": "TEXT",
+    "format": "txt",
+    "notificationGroup": "DES",
+    "report": "AUDIT_LOG_OBJECT",
+    "resultLevel": "ROOT",
+    "userMessage": "Here is your report",
+    "userMessageNoTitle": "",
+    "userMessageTitle": "Sending report to users ... ",
+    "userMessageYesTitle": "Confirm"
+  }
+}

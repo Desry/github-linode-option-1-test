@@ -1,0 +1,21 @@
+{
+  "description": "import fix spread between eonia and EuroSTR for PC_EOD_NAMERICAS",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "no_script"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData;\necho ##copying eurostr/Eonia_EuroSTR_PC_EOD_NAMERICAS.xml to Received/common;\ncp eurostr/Eonia_EuroSTR_PC_EOD_NAMERICAS.xml Received/common;\necho ##uploading file;\n./GlobalMarketDataExecute.sh -update -type:marketratesheet -file:Eonia_EuroSTR_PC_EOD_NAMERICAS -body:body_FO_NA -mds:PC_EOD_NAMERICAS -answer:answer_Eonia_EuroSTR_PC_EOD_NAMERICAS -log:log_update_Eonia_EuroSTR_PC_EOD_NAMERICAS\n#echo ##finish uploading file\nif [ $? = 0 ] \nthen\necho \"finished uploading file\"\nexit 0\nelse\necho \"error uploading file\"\nexit 1\nfi"
+  }
+}

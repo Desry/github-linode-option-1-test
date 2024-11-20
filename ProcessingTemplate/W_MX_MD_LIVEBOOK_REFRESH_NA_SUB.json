@@ -1,0 +1,114 @@
+{
+  "description": "12000|Livebook refresh after PC market data upload",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_MARKETDATA_IMPORT_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_MARKETDATA_IMPORT_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_LB_MDREFRESH_FULLREV_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_FULLREV_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_FULLREV_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_LB_MDREFRESH_STOCK_NA_SLEEP5",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_STOCK_NA_SLEEP5",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_STOCK_NA_SLEEP5",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_LB_MDREFRESH_STOCK_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_STOCK_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_STOCK_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LB_MDREFRESH_STOCK_NA_SLEEP5",
+          "predecessor": "T_MX_LB_MDREFRESH_STOCK_NA_SLEEP5",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LB_MDREFRESH_NOTIFICATION_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_NOTIFICATION_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_NOTIFICATION_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LB_MDREFRESH_FULLREV_NA",
+          "predecessor": "T_MX_LB_MDREFRESH_FULLREV_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LB_MDREFRESH_STOCK_NA",
+          "predecessor": "T_MX_LB_MDREFRESH_STOCK_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "description": "BoE for PC RBPL COMMODITY - Pricing Curve NA rename",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts\n./File_Naming_Interface.sh -p ../integration/interfaces/Sparc/EOD/Americas/ -f NA_RBPL_COM_PC -l ${LOG_FILE}"
+  }
+}

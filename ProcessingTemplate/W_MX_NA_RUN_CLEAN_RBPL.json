@@ -1,0 +1,453 @@
+{
+  "description": "12000|RBPL initialisation North America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "actions": 
+  [
+    {
+      "duration": 600000,
+      "durationTimeMode": "TIME_SINCE_CREATED",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "NOT_STARTED",
+      "processingCommand": {
+        "notificationChannel": "OBM"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampCalendar": "MONDAY_TO_FRIDAY_NY",
+      "timestampRelation": "EQ",
+      "timestampSelector": "PREV_CAL_DAY",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_MARKETDATA_COPY2_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_MARKETDATA_COPY2_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampCalendar": "MONDAY_TO_FRIDAY_NY",
+      "timestampRelation": "EQ",
+      "timestampSelector": "PREV_CAL_DAY",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_CCSNAOUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_CCSNAOUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_CCSNAOUT1",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_CCSNAOUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_CCSNAOUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_CCSNAOUT1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_CCSNAOUT1",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_CCSNAOUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_SLEEP120",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_SLEEP120",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_SLEEP120",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_IRD_NA_PC",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_IRD_NA_PC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_IRD_NA_PC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_SLEEP120",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_SLEEP120",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_IRDNAPC",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_IRDNAPC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_IRDNAPC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_IRD_NA_PC",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_IRD_NA_PC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_SLEEP180",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_SLEEP180",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_SLEEP180",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUNIRD_NASPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUNIRD_NASPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUNIRD_NASPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_SLEEP180",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_SLEEP180",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_IRDNASPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_IRDNASPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_IRDNASPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUNIRD_NASPR1",
+          "predecessor": "T_MX_AM_RBPLNEWRUNIRD_NASPR1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_SLEEP240",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_SLEEP240",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_SLEEP240",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUNIRD_NASPR2",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUNIRD_NASPR2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUNIRD_NASPR2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_SLEEP240",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_SLEEP240",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_IRDNASPR2",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_IRDNASPR2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_IRDNASPR2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUNIRD_NASPR2",
+          "predecessor": "T_MX_AM_RBPLNEWRUNIRD_NASPR2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_SLEEP300",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_SLEEP300",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_SLEEP300",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_IRDNAPC3",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_IRDNAPC3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_IRDNAPC3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_SLEEP300",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_SLEEP300",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_IRDNAPC3",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_IRDNAPC3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_IRDNAPC3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_IRDNAPC3",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_IRDNAPC3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_SLEEP60",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_SLEEP60",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_SLEEP60",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_CCSNAOUT4",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_CCSNAOUT4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_CCSNAOUT4",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_SLEEP60",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_SLEEP60",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_CCSNAOUT4",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_CCSNAOUT4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_CCSNAOUT4",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_CCSNAOUT4",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_CCSNAOUT4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUN_SLEEP_300",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUN_SLEEP_300",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUN_SLEEP_300",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLNEWRUNSTIR_NA_CB",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLNEWRUNSTIR_NA_CB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLNEWRUNSTIR_NA_CB",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUN_SLEEP_300",
+          "predecessor": "T_MX_AM_RBPLNEWRUN_SLEEP_300",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLCLEAN_STIRNACB",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLCLEAN_STIRNACB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLCLEAN_STIRNACB",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLNEWRUNSTIR_NA_CB",
+          "predecessor": "T_MX_AM_RBPLNEWRUNSTIR_NA_CB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

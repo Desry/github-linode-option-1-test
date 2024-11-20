@@ -1,0 +1,52 @@
+{
+  "description": "12000|exit code 7",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_LIMITATION_DATEMV_NA6",
+      "processingTemplate": "T_MX_LIMITATION_DATEMV_NA6",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LIMITATION_DATEMV_NA6"
+    },
+    {
+      "name": "T_MX_LIMITATION_DATEMV_NA7",
+      "processingTemplate": "T_MX_LIMITATION_DATEMV_NA7",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LIMITATION_DATEMV_NA7",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LIMITATION_DATEMV_NA6",
+          "predecessor": "T_MX_LIMITATION_DATEMV_NA6",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

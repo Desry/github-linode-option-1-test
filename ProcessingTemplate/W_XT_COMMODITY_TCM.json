@@ -1,0 +1,109 @@
+{
+  "owner": "jaideep.panwar",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "lockState": "EXCLUSIVE",
+      "name": "L_XT_COMMODITY_TCM",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "resource": "L_XT_COMMODITY_TCM",
+      "resourceType": "LOCK",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "W_XT_GEN_TDF_EXPORT",
+      "processingTemplate": "W_XT_GEN_TDF_EXPORT",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_TCM_EXPORT",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "ExportArchiveName": "E:\\CRIS_DATA\\Exports\\TCM\\Archive\\CCYYMMDD\\Timescape-TCM-CP.csv",
+        "ExportArchiveOptions": "today overwrite move",
+        "ExportCopyName": "E:\\CRIS_DATA\\Outgoing\\TCM\\Timescape-TCM-CP-CCYYMMDD.csv",
+        "ExportCopyOptions": " overwrite today",
+        "ExportFileName": " E:\\CRIS_DATA\\Exports\\TCM\\Timescape-TCM-CP.csv",
+        "Tdf": "E:\\TimeScape\\TDF\\Export\\TCM\\Exp_TCM_CommodityPrices.tdf"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "W_XT_COMMODITY_PRICES_REUTERS.W_XT_GEN_IMP_IMPORT",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "W_XT_COMMODITY_PRICES_REUTERS",
+          "workflowTemplateItem": "W_XT_GEN_IMP_IMPORT",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_XT_GEN_COPY_FILE",
+      "passBy": true,
+      "processingTemplate": "W_XT_GEN_COPY_FILE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_TCM_COPY",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "CopyOptions": "overwrite today",
+        "SourceFileName": "E:\\CRIS_DATA\\Exports\\TCM\\Archive\\CCYYMMDD\\Timescape-TCM-CP.csv",
+        "TargetFileName": "E:\\CRIS_DATA\\Outgoing\\Orange\\Timescape-Orange-CP.csv"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_TDF_EXPORT",
+          "predecessor": "W_XT_GEN_TDF_EXPORT",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_XT_GEN_COPY_FILE.1",
+      "passBy": true,
+      "processingTemplate": "W_XT_GEN_COPY_FILE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_TCM_ARCHIVE",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "CopyOptions": "today",
+        "SourceFileName": "E:\\CRIS_DATA\\Outgoing\\Orange\\Timescape-Orange-CP.csv",
+        "TargetFileName": "E:\\CRIS_DATA\\Exports\\Orange\\Archive\\CCYYMMDD\\Timescape-Orange-CP.csv"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_COPY_FILE",
+          "predecessor": "W_XT_GEN_COPY_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

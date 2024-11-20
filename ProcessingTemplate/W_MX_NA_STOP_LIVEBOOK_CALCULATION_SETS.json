@@ -1,0 +1,712 @@
+{
+  "description": "12000|Livebook stop North America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT1",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT4",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT4",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT1",
+          "predecessor": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_TODAYACTIVITY",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_TODAYACTIVITY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_TODAYACTIVITY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT4",
+          "predecessor": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_OUT4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_TODAYACTIVITY",
+          "predecessor": "T_MX_NA_ANT_STOPLB_CCS_NA_FULLREVAL_TODAYACTIVITY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT4",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT4",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT1",
+          "predecessor": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT4",
+          "predecessor": "T_MX_NA_ANT_STOPLB_CCS_NA_RBPL_STOCK_OUT4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT2",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT1",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT3",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT2",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT4",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT4",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT3",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_PC_FLASH",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_PC_FLASH",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT4",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_PC_FLASH",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR2",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR1",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR2",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_SPR2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC_FLASH",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC_FLASH",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC_FLASH",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR2",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR1",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_CB",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_CB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_CB",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR2",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_SPR2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_FUT",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_FUT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_FUT",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_CB",
+          "predecessor": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_CB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_TENOR",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_TENOR",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_TENOR",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_FUT",
+          "predecessor": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_FUT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_STIR_RBPL_STOCK_NA_CB",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_STIR_RBPL_STOCK_NA_CB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_STIR_RBPL_STOCK_NA_CB",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_TENOR",
+          "predecessor": "T_MX_NA_ANT_STOPLB_STIR_FULLREVAL_NA_TENOR",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_OUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_OUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_OUT1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_STIR_RBPL_STOCK_NA_CB",
+          "predecessor": "T_MX_NA_ANT_STOPLB_STIR_RBPL_STOCK_NA_CB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TENOR",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TENOR",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TENOR",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_OUT1",
+          "predecessor": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_OUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TODAYACTIVITY",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TODAYACTIVITY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TODAYACTIVITY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TENOR",
+          "predecessor": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TENOR",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC3",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TODAYACTIVITY",
+          "predecessor": "T_MX_SA_ANT_STOPLB_CCS_SA_FULLREVAL_TODAYACTIVITY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY_PC_F",
+      "priority": "0",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY_PC_F",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY_PC_F",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC3",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_RBPL_STOCK_NA_PC3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_OUT1",
+      "processingTemplate": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_OUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY_PC_F",
+          "predecessor": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_TODAYACTIVITY_PC_F",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_PC_FLASH",
+      "processingTemplate": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_OUT1",
+          "predecessor": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_OUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_TODAYACTIVITY",
+      "processingTemplate": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_TODAYACTIVITY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_PC_FLASH",
+          "predecessor": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EU_ANT_STOPLB_IGB_RBPL_STOCK_EU_OUT1",
+      "processingTemplate": "T_MX_EU_ANT_STOPLB_IGB_RBPL_STOCK_EU_OUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_TODAYACTIVITY",
+          "predecessor": "T_MX_EU_ANT_STOPLB_IGB_FULLREVAL_TODAYACTIVITY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT6",
+      "processingTemplate": "T_MX_NA_ANT_STOPLB_IRD_FULLREVAL_NA_OUT6",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EU_ANT_STOPLB_IGB_RBPL_STOCK_EU_OUT1",
+          "predecessor": "T_MX_EU_ANT_STOPLB_IGB_RBPL_STOCK_EU_OUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

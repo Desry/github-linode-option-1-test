@@ -1,0 +1,31 @@
+{
+  "description": "Execution of PS to determine different dates",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "INTRADAY",
+    "WEEKEND"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s M_SCH_DATES -n FOD_EUROPE -l ${LOG_FILE}"
+  },
+  "designParameters": 
+  [
+    {
+      "defaultValue": "10",
+      "editorType": "NUMBER",
+      "name": "WAIT_SECONDS",
+      "required": true,
+      "title": "WAIT_SECONDS"
+    }
+  ]
+}

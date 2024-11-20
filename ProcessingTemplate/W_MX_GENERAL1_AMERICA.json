@@ -1,0 +1,222 @@
+{
+  "description": "12000|Fund sweeping",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "actions": 
+  [
+    {
+      "duration": 1800000,
+      "durationTimeMode": "TIME_SINCE_CREATED",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "NOT_STARTED",
+      "processingCommand": {
+        "notificationChannel": "OBM"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FAILED_SETTLEMENT_NA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FAILED_SETTLEMENT_NA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_LATE_BONDPRICES_NA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_LATE_BONDPRICES_NA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_MARKETDATA_COPY_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_MARKETDATA_COPY_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_AUTO_FIX_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_AUTO_FIX_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AUTO_FIX_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BOND_NETTING_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BOND_NETTING_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BOND_NETTING_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BOND_NET_SEC_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BOND_NET_SEC_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BOND_NET_SEC_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BOND_NET_FVTOCI_NA",
+      "processingTemplate": "T_MX_BOND_NET_FVTOCI_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BOND_NET_SEC_NA",
+          "predecessor": "T_MX_BOND_NET_SEC_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BOND_NETTING_NA",
+          "predecessor": "T_MX_BOND_NETTING_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_COM_FUT_NETTING_NA",
+      "processingTemplate": "T_MX_COM_FUT_NETTING_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_COM_FUT_NETTING_NA"
+    },
+    {
+      "name": "T_MX_COM_OFUT_NETTING_NA",
+      "processingTemplate": "T_MX_COM_OFUT_NETTING_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_DEPO_FUND_SWEEP_CHL",
+      "priority": "0",
+      "processingTemplate": "T_MX_DEPO_FUND_SWEEP_CHL",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DEPO_FUND_SWEEP_CHL",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_DEPO_FUND_SWEEP_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DEPO_FUND_SWEEP_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DEPO_FUND_SWEEP_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_EOD_EVTTERM_FUT_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EOD_EVTTERM_FUT_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EOD_EVTTERM_FUT_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_EOD_EVTTERM_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EOD_EVTTERM_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EOD_EVTTERM_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_IR_FUT_NETTING_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_IR_FUT_NETTING_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IR_FUT_NETTING_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_RESERVE_UNWD_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_RESERVE_UNWD_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_RESERVE_UNWD_NA",
+      "weight": "1"
+    }
+  ]
+}

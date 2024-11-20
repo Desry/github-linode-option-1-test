@@ -1,0 +1,32 @@
+{
+  "description": "12000|EOD kickoff",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_WAIT_GENERIC",
+      "processingTemplate": "T_MX_WAIT_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_WAIT_NA_START_EOD",
+      "templateParameters": {
+        "WAIT_SECONDS": "10"
+      }
+    }
+  ]
+}

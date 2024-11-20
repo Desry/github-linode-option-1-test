@@ -1,0 +1,222 @@
+{
+  "description": "12000|RBPL Stop North America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "actions": 
+  [
+    {
+      "duration": 4200000,
+      "durationTimeMode": "TIME_SINCE_CREATED",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "NOT_STARTED",
+      "processingCommand": {
+        "notificationChannel": "OBM"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_NA_STOP_LIVEBOOK_CALCULATION_SETS",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_NA_STOP_LIVEBOOK_CALCULATION_SETS",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_AM_RBPLSTOP_CCSNAOUT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_CCSNAOUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_CCSNAOUT1",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AM_RBPLSTOP_CCSNAOUT4",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_CCSNAOUT4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_CCSNAOUT4",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_CCSNAOUT1",
+          "predecessor": "T_MX_AM_RBPLSTOP_CCSNAOUT1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLSTOP_IRDNAPC",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_IRDNAPC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_IRDNAPC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_CCSNAOUT4",
+          "predecessor": "T_MX_AM_RBPLSTOP_CCSNAOUT4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLSTOP_IRDNASPR1",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_IRDNASPR1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_IRDNASPR1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_IRDNAPC",
+          "predecessor": "T_MX_AM_RBPLSTOP_IRDNAPC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLSTOP_IRDNASPR2",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_IRDNASPR2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_IRDNASPR2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_IRDNASPR1",
+          "predecessor": "T_MX_AM_RBPLSTOP_IRDNASPR1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLSTOP_STIRNACB",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_STIRNACB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_STIRNACB",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_IRDNASPR2",
+          "predecessor": "T_MX_AM_RBPLSTOP_IRDNASPR2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_RBPLSTOP_IRDNAPC3",
+      "priority": "0",
+      "processingTemplate": "T_MX_AM_RBPLSTOP_IRDNAPC3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_RBPLSTOP_IRDNAPC3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_STIRNACB",
+          "predecessor": "T_MX_AM_RBPLSTOP_STIRNACB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EU_RBPLSTOP_IGBUTOUT1",
+      "processingTemplate": "T_MX_EU_RBPLSTOP_IGBUTOUT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AM_RBPLSTOP_IRDNAPC3",
+          "predecessor": "T_MX_AM_RBPLSTOP_IRDNAPC3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "lazyLoad": true,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "CLC"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "CLC",
+      "editorType": "TEXT",
+      "hint": "Occurrence of this workflow (DLY, CLC, etc.)",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC, etc.)"
+    },
+    {
+      "defaultValue": "SPF",
+      "editorType": "TEXT",
+      "hint": "REGION for which this workflow has to run",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_UPDATE_RUNNING",
+      "processingTemplate": "TJ_SPT_RPG_UPDATE_RUNNING",
+      "processingType": "TASK",
+      "serverNodeType": "ORACLE",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "RDBMS_SQL_STATEMENT",
+      "title": "JO_SPT_SPF_RPG_UPDATE_RUNNING_CLC"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "WF_FDW_SPF_RPG_HIST_CLC",
+      "processingTemplate": "WF_FDW_SPF_RPG_HIST_CLC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "WF_FDW_SPF_RPG_HIST_CLC",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_UPDATE_RUNNING",
+          "predecessor": "TJ_SPT_RPG_UPDATE_RUNNING",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "ORACLE",
+          "taskType": "RDBMS_SQL_STATEMENT"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_CASHFLOW_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_CASHFLOW_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_FACILITY_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_FACILITY_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_INSTRUMENT_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_INSTRUMENT_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_INTEREST_RATE_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_INTEREST_RATE_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_MLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_MLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_PS_STAT_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_PS_STAT_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_RELATION_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_RELATION_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_RISK_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_RISK_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_SPF_HIST_TRADE_NF_DLY",
+          "parent": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_SPF_HIST_TRADE_NF_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "NOR",
+          "groupId": "0924cf67-05d5-4774-80c2-ca10026fb3e9",
+          "name": "NOR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "WF_SPT_SPF_RPG_DM_CLC",
+      "processingTemplate": "WF_SPT_SPF_RPG_DM_CLC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "WF_SPT_SPF_RPG_DM_CLC",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "WF_FDW_SPF_RPG_HIST_CLC",
+          "predecessor": "WF_FDW_SPF_RPG_HIST_CLC",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_SPT_SPF_DM_DLY",
+          "parent": "c80078d1-5ee2-4a85-95dd-8e71bbd15f8c",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_SPT_SPF_DM_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_SPT_SPF_LOAD_DM_MLY",
+          "parent": "c80078d1-5ee2-4a85-95dd-8e71bbd15f8c",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_SPT_SPF_LOAD_DM_MLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "NOR",
+          "groupId": "c80078d1-5ee2-4a85-95dd-8e71bbd15f8c",
+          "name": "NOR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_UPDATE_FINISHED",
+      "processingTemplate": "TJ_SPT_RPG_UPDATE_FINISHED",
+      "processingType": "TASK",
+      "serverNodeType": "ORACLE",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "RDBMS_SQL_STATEMENT",
+      "title": "JO_SPT_SPF_RPG_UPDATE_FINISHED_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "WF_SPT_SPF_RPG_DM_CLC",
+          "predecessor": "WF_SPT_SPF_RPG_DM_CLC",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

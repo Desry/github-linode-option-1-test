@@ -1,0 +1,224 @@
+{
+  "description": "Exit code 3 or 4",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "GL",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+  },
+  "items": 
+  [
+    {
+      "name": "R_MX_0100_FIX_COMM_FUT_IMPORT_EUR",
+      "processingTemplate": "R_MX_0100_FIX_COMM_FUT_IMPORT_EUR",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_0100_FIX_COMM_FUT_IMPORT_EUR"
+    },
+    {
+      "name": "R_MX_0100_FIX_COMM_MM_FUT_IMPORT",
+      "processingTemplate": "R_MX_0100_FIX_COMM_MM_FUT_IMPORT",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH"
+    },
+    {
+      "name": "R_MX_0100_FIX_COMM_OPT_IMPORT_EUR",
+      "processingTemplate": "R_MX_0100_FIX_COMM_OPT_IMPORT_EUR",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH"
+    },
+    {
+      "name": "T_MX_0100_FIX_COMM_FUT",
+      "processingTemplate": "T_MX_0100_FIX_COMM_FUT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_0100_FIX_COMM_FUT",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_0100_FIX_COMM_FUT_IMPORT_EUR",
+          "predecessor": "R_MX_0100_FIX_COMM_FUT_IMPORT_EUR",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_0100_FIX_COMM_FUT_FILE_COPY",
+      "processingTemplate": "T_MX_0100_FIX_COMM_FUT_FILE_COPY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_0100_FIX_COMM_FUT_FILE_COPY",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_0100_FIX_COMM_FUT",
+          "predecessor": "T_MX_0100_FIX_COMM_FUT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EOD_TAS_FIXING_COMMO",
+      "processingTemplate": "T_MX_EOD_TAS_FIXING_COMMO",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EOD_TAS_FIXING_COMMO",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_0100_FIX_COMM_FUT_FILE_COPY",
+          "predecessor": "T_MX_0100_FIX_COMM_FUT_FILE_COPY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EOD_COM_FUT_SPLIT",
+      "processingTemplate": "T_MX_EOD_COM_FUT_SPLIT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_TAS_FIXING_COMMO",
+          "predecessor": "T_MX_EOD_TAS_FIXING_COMMO",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_0100_FIX_COMM_MM_FUT",
+      "processingTemplate": "T_MX_0100_FIX_COMM_MM_FUT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_0100_FIX_COMM_MM_FUT_IMPORT",
+          "predecessor": "R_MX_0100_FIX_COMM_MM_FUT_IMPORT",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_COM_FUT_SPLIT",
+          "predecessor": "T_MX_EOD_COM_FUT_SPLIT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_0100_FIX_COMM_OPT",
+      "processingTemplate": "T_MX_0100_FIX_COMM_OPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_0100_FIX_COMM_OPT_IMPORT_EUR",
+          "predecessor": "R_MX_0100_FIX_COMM_OPT_IMPORT_EUR",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_0100_FIX_COMM_MM_FUT",
+          "predecessor": "T_MX_0100_FIX_COMM_MM_FUT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_0100_FIX_COMM_OPT_FILE_COPY",
+      "processingTemplate": "T_MX_0100_FIX_COMM_OPT_FILE_COPY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_0100_FIX_COMM_OPT",
+          "predecessor": "T_MX_0100_FIX_COMM_OPT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

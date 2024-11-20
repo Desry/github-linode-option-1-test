@@ -1,0 +1,185 @@
+{
+  "description": "12000|BOA reports",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FO_DATEMOVE_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_BD_BOA_CD_NA_BF_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_BOA_CD_NA_BF_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_BOA_CD_NA_BF_PS",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_BOA_CD_NA_BE_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_BOA_CD_NA_BE_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_BOA_CD_NA_BE_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_BOA_CD_NA_BF_PS",
+          "predecessor": "T_MX_BD_BOA_CD_NA_BF_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_BOA_CD_NA_BE_PS_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_BOA_CD_NA_BE_PS_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_BOA_CD_NA_BE_PS_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_BOA_CD_NA_BE_PS",
+          "predecessor": "T_MX_BD_BOA_CD_NA_BE_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_HA_FX_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_HA_FX_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_HA_FX_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_HA_OTH_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_HA_OTH_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_HA_OTH_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_HA_PC2_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_HA_PC2_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_HA_PC2_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BOAPC2_RENAME_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BOAPC2_RENAME_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BOAPC2_RENAME_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_HA_PC2_PS_AM",
+          "predecessor": "T_MX_BD_HA_PC2_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BOA_RENAME_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BOA_RENAME_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BOA_RENAME_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_HA_FX_PS_AM",
+          "predecessor": "T_MX_BD_HA_FX_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_HA_OTH_PS_AM",
+          "predecessor": "T_MX_BD_HA_OTH_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

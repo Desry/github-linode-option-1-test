@@ -1,0 +1,20 @@
+{
+  "description": "Hedge curve export maturity conversion (from 1Y to 12M)",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData\n./ChangeMaturity.sh -file:hedgecurve -region:namericas -maturity:1Y=12M"
+  }
+}

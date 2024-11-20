@@ -1,0 +1,3938 @@
+{
+  "description": "SPF_REPROCESS",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "lazyLoad": true,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "CLC"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "CLC",
+      "editorType": "TEXT",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC etc.,)"
+    },
+    {
+      "defaultValue": "SPF",
+      "editorType": "TEXT",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CREATE_BOOKMARKS_CLC",
+      "weight": "1"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACT_BALANCES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACT_BALANCES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACT_BALANCES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_JET_PSUSER",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_JET_PSUSER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_JET_PSUSER_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_LEDGER_EOD_CONTROL_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_LEDGER_EOD_CONTROL_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_LEDGER_EOD_CONTROL_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_LOCK_JET_ACTUALS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_LOCK_JET_ACTUALS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_LOCK_JET_ACTUALS_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_JET_PSUSER",
+          "predecessor": "TJ_SPT_RPG_JET_PSUSER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_LOCK_JET_ADJUSTMENTS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_LOCK_JET_ADJUSTMENTS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_LOCK_JET_ADJUSTMENTS_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_JET_PSUSER",
+          "predecessor": "TJ_SPT_RPG_JET_PSUSER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_EOY_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_EOY_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_POSTED_JOURNAL_LINES_EOY_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_POSTED_JOURNAL_LINES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PRPB_BASIC_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PRPB_BASIC_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PRPB_BASIC_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_CREATE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_LOCK_JET_ACTUALS",
+          "predecessor": "TJ_SPT_RPG_LOCK_JET_ACTUALS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_LOCK_JET_ADJUSTMENTS",
+          "predecessor": "TJ_SPT_RPG_LOCK_JET_ADJUSTMENTS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RECON_LEDGER_BALANCES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_LEDGER_EOD_CONTROL_S",
+          "predecessor": "TJ_SPT_RPG_LEDGER_EOD_CONTROL_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRPB_BASIC_S",
+          "predecessor": "TJ_SPT_RPG_PRPB_BASIC_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ASSOCIATIVE_ENTITIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ASSOCIATIVE_ENTITIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ASSOCIATIVE_ENTITIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+          "predecessor": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_POPULATION_STARTED",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_POPULATION_STARTED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_POPULATION_STARTED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ASSOCIATIVE_ENTITIES_S",
+          "predecessor": "TJ_SPT_RPG_ASSOCIATIVE_ENTITIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ACCOUNTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ACCOUNTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ACCOUNTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ALTERNATE_FACILITIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ALTERNATE_FACILITIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ALTERNATE_FACILITIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ALTERNATE_INSTRUMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ALTERNATE_INSTRUMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ALTERNATE_INSTRUMENTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ALTERNATE_RELATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ALTERNATE_RELATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ALTERNATE_RELATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ALTERNATE_TRADES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ALTERNATE_TRADES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ALTERNATE_TRADES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ALT_MARKET_RATE_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ALT_MARKET_RATE_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ALT_MARKET_RATE_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ALT_OPERATING_UNITS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ALT_OPERATING_UNITS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ALT_OPERATING_UNITS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ARREARS_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ARREARS_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ARREARS_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_BOOKS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_BOOKS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_BOOKS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_BUSINESS_UNITS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_BUSINESS_UNITS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_BUSINESS_UNITS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CASHFLOW_INSTRUMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CASHFLOW_INSTRUMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CASHFLOW_INSTRUMENTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CASHFLOW_TRADES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CASHFLOW_TRADES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CASHFLOW_TRADES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CASHFLOW_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CASHFLOW_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CASHFLOW_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CLASSES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CLASSES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CLASSES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_COLLATERALS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_COLLATERALS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_COLLATERALS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_COUNTRIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_COUNTRIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_COUNTRIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CURRENCIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CURRENCIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CURRENCIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CURRENCY_EXCHANGE_RATES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CURRENCY_EXCHANGE_RATES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CURRENCY_EXCHANGE_RATES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_DEPARTMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_DEPARTMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_DEPARTMENTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_DIVISIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_DIVISIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_DIVISIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_EMPLOYEES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_EMPLOYEES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_EMPLOYEES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACILITIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACILITIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACILITIES_S_DERIVED",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACILITIES_S_DERIVED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITIES_S_DERIVED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITIES_S",
+          "predecessor": "TJ_SPT_RPG_FACILITIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_SPT_RPG_FACILITY_CREDIT_RATINGS_S",
+      "passBy": true,
+      "processingTemplate": "TJ_SPT_RPG_FACILITY_CREDIT_RATINGS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITY_CREDIT_RATINGS_S_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACILITY_GROUPS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACILITY_GROUPS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITY_GROUPS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACILITY_PURPOSES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACILITY_PURPOSES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITY_PURPOSES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACILITY_REG_LOCATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACILITY_REG_LOCATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITY_REG_LOCATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FACILITY_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FACILITY_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FACILITY_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FAC_ALLOWED_CCY_CODES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FAC_ALLOWED_CCY_CODES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FAC_ALLOWED_CCY_CODES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FAC_ALLOWED_PRODUCTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FAC_ALLOWED_PRODUCTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FAC_ALLOWED_PRODUCTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FAC_ALL_CO_BORROWERS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FAC_ALL_CO_BORROWERS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FAC_ALL_CO_BORROWERS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FINANCE_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FINANCE_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FINANCE_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_SPT_RPG_FORBEARANCE_MEASURES_S",
+      "processingTemplate": "TJ_SPT_RPG_FORBEARANCE_MEASURES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FORBEARANCE_MEASURES_S_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FX_DEAL_RATES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FX_DEAL_RATES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FX_DEAL_RATES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FX_RATES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FX_RATES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FX_RATES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_GROUP_DIVISIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_GROUP_DIVISIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_GROUP_DIVISIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_GROUP_ENTITIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_GROUP_ENTITIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_GROUP_ENTITIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_GROUP_HOLDINGS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_GROUP_HOLDINGS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_GROUP_HOLDINGS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_GROUP_LEDGERS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_GROUP_LEDGERS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_GROUP_LEDGERS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INDUSTRY_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INDUSTRY_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INDUSTRY_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INSTRUMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INSTRUMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INSTRUMENTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INSTRUMENT_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INSTRUMENT_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INSTRUMENT_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INSTR_CREDIT_RATINGS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INSTR_CREDIT_RATINGS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INSTR_CREDIT_RATINGS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INSTR_PAYMENT_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INSTR_PAYMENT_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INSTR_PAYMENT_SCHEDULES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INS_INT_RATE_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INS_INT_RATE_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INS_INT_RATE_SCHEDULES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INTEREST_RATE_BRACKETS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INTEREST_RATE_BRACKETS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INTEREST_RATE_BRACKETS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INTEREST_RATE_TRADES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INTEREST_RATE_TRADES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INTEREST_RATE_TRADES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INT_RATE_INSTRUMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INT_RATE_INSTRUMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INT_RATE_INSTRUMENTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_ISINS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_ISINS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_ISINS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_LEDGERS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_LEDGERS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_LEDGERS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_MANAGERIAL_ENTITIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_MANAGERIAL_ENTITIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_MANAGERIAL_ENTITIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_MARKET_INTEREST_RATES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_MARKET_INTEREST_RATES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_MARKET_INTEREST_RATES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_MARKET_RATE_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_MARKET_RATE_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_MARKET_RATE_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_NON_FIXED_INT_RATE_TDE_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_NON_FIXED_INT_RATE_TDE_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_NON_FIXED_INT_RATE_TDE_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_OPERATING_UNITS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_OPERATING_UNITS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_OPERATING_UNITS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_OPERAT_UNIT_LOCATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_OPERAT_UNIT_LOCATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_OPERAT_UNIT_LOCATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_OPER_UNIT_REG_LOCATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_OPER_UNIT_REG_LOCATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_OPER_UNIT_REG_LOCATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PAST_DUE_SETTLEMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PAST_DUE_SETTLEMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PAST_DUE_SETTLEMENTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PRODUCTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PRODUCTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PRODUCTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PRODUCT_GROUPS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PRODUCT_GROUPS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PRODUCT_GROUPS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PRODUCT_SUB_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PRODUCT_SUB_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PRODUCT_SUB_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PROJECTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PROJECTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PROJECTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INSTRUMENTS_S",
+          "predecessor": "TJ_SPT_RPG_INSTRUMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RABO_GROUPS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RABO_GROUPS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RABO_GROUPS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RELATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RELATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RELATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_INSTRUMENTS_S_DERIVED",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_INSTRUMENTS_S_DERIVED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_INSTRUMENTS_S_DERIVED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INSTRUMENTS_S",
+          "predecessor": "TJ_SPT_RPG_INSTRUMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATIONS_S",
+          "predecessor": "TJ_SPT_RPG_RELATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RELATIONS_S_DERIVED",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RELATIONS_S_DERIVED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RELATIONS_S_DERIVED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATIONS_S",
+          "predecessor": "TJ_SPT_RPG_RELATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RELATION_CREDIT_RATINGS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RELATION_CREDIT_RATINGS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RELATION_CREDIT_RATINGS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RELATION_REG_LOCATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RELATION_REG_LOCATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RELATION_REG_LOCATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RELATION_TYPES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RELATION_TYPES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RELATION_TYPES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_REP_PRODUCT_GROUPS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_REP_PRODUCT_GROUPS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_REP_PRODUCT_GROUPS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_REVALUATION_RULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_REVALUATION_RULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_REVALUATION_RULES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RISK_MITIGANTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RISK_MITIGANTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RISK_MITIGANTS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RISK_MIT_FACILITIES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RISK_MIT_FACILITIES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RISK_MIT_FACILITIES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RISK_MIT_RELATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RISK_MIT_RELATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RISK_MIT_RELATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_RISK_MIT_TRADES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_RISK_MIT_TRADES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_RISK_MIT_TRADES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_SETTLEMENT_METHODS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_SETTLEMENT_METHODS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_SETTLEMENT_METHODS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_SOCIAL_ECON_BALANCES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_SOCIAL_ECON_BALANCES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_SOCIAL_ECON_BALANCES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_SOURCES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_SOURCES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_SOURCES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TDE_LEG_INT_R_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TDE_LEG_INT_R_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TDE_LEG_INT_R_SCHEDULES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TDE_LEG_PMNT_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TDE_LEG_PMNT_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TDE_LEG_PMNT_SCHEDULES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TDE_PROV_MOV_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TDE_PROV_MOV_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TDE_PROV_MOV_SCHEDULES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TRADES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TRADES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TRADES_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_COLLATERAL_ENGINE",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_COLLATERAL_ENGINE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_COLLATERAL_ENGINE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CURRENCIES_S",
+          "predecessor": "TJ_SPT_RPG_CURRENCIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CURRENCY_EXCHANGE_RATES_S",
+          "predecessor": "TJ_SPT_RPG_CURRENCY_EXCHANGE_RATES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITIES_S_DERIVED",
+          "predecessor": "TJ_SPT_RPG_FACILITIES_S_DERIVED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_REVALUATION_RULES_S",
+          "predecessor": "TJ_SPT_RPG_REVALUATION_RULES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RISK_MIT_FACILITIES_S",
+          "predecessor": "TJ_SPT_RPG_RISK_MIT_FACILITIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RISK_MITIGANTS_S",
+          "predecessor": "TJ_SPT_RPG_RISK_MITIGANTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RISK_MIT_RELATIONS_S",
+          "predecessor": "TJ_SPT_RPG_RISK_MIT_RELATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RISK_MIT_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_RISK_MIT_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_IMPAIRMENTS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_IMPAIRMENTS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_IMPAIRMENTS_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE",
+          "predecessor": "TJ_SPT_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_NETTING_ENGINE",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_NETTING_ENGINE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_NETTING_ENGINE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRODUCTS_S",
+          "predecessor": "TJ_SPT_RPG_PRODUCTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE",
+          "predecessor": "TJ_SPT_RPG_PRPB_BASIC_S_ACCOUNTING_METHOD_CODE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_COMPENSATION",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_COMPENSATION",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_COMPENSATION_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_BUSINESS_UNITS_S",
+          "predecessor": "TJ_SPT_RPG_BUSINESS_UNITS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CURRENCIES_S",
+          "predecessor": "TJ_SPT_RPG_CURRENCIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITIES_S",
+          "predecessor": "TJ_SPT_RPG_FACILITIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_NETTING_ENGINE",
+          "predecessor": "TJ_SPT_RPG_NETTING_ENGINE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATIONS_S",
+          "predecessor": "TJ_SPT_RPG_RELATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_CLASSIFICATIONS_PRPB_AGGREGATED_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_CLASSIFICATIONS_PRPB_AGGREGATED_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_CLASSIFICATIONS_PRPB_AGGREGATED_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_COMPENSATION",
+          "predecessor": "TJ_SPT_RPG_COMPENSATION",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_IMPAIRMENTS",
+          "predecessor": "TJ_SPT_RPG_IMPAIRMENTS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_PRPB_AGGREGATED_S_LEG_TYPE_CODE",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_PRPB_AGGREGATED_S_LEG_TYPE_CODE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_PRPB_AGGREGATED_S_LEG_TYPE_CODE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CASHFLOW_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_CASHFLOW_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CLASSIFICATIONS_PRPB_AGGREGATED_S",
+          "predecessor": "TJ_SPT_RPG_CLASSIFICATIONS_PRPB_AGGREGATED_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TRADES_S_DERIVED_PRODUCT_CODE",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TRADES_S_DERIVED_PRODUCT_CODE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TRADES_S_DERIVED_PRODUCT_CODE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_SPT_RPG_TRADE_CREDIT_RATINGS_S",
+      "passBy": true,
+      "processingTemplate": "TJ_SPT_RPG_TRADE_CREDIT_RATINGS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TRADE_CREDIT_RATINGS_S_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TRADE_GROUPS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TRADE_GROUPS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TRADE_GROUPS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TRADE_LEGS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TRADE_LEGS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TRADE_LEGS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_TRADE_REG_LOCATIONS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_TRADE_REG_LOCATIONS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_TRADE_REG_LOCATIONS_S_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_POPULATION_FINISHED",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_POPULATION_FINISHED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_POPULATION_FINISHED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ACCOUNTS_S",
+          "predecessor": "TJ_SPT_RPG_ACCOUNTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ALTERNATE_FACILITIES_S",
+          "predecessor": "TJ_SPT_RPG_ALTERNATE_FACILITIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ALTERNATE_INSTRUMENTS_S",
+          "predecessor": "TJ_SPT_RPG_ALTERNATE_INSTRUMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ALTERNATE_RELATIONS_S",
+          "predecessor": "TJ_SPT_RPG_ALTERNATE_RELATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ALTERNATE_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_ALTERNATE_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ALT_MARKET_RATE_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_ALT_MARKET_RATE_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ALT_OPERATING_UNITS_S",
+          "predecessor": "TJ_SPT_RPG_ALT_OPERATING_UNITS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ARREARS_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_ARREARS_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_BOOKS_S",
+          "predecessor": "TJ_SPT_RPG_BOOKS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CASHFLOW_INSTRUMENTS_S",
+          "predecessor": "TJ_SPT_RPG_CASHFLOW_INSTRUMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CASHFLOW_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_CASHFLOW_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_CLASSES_S",
+          "predecessor": "TJ_SPT_RPG_CLASSES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_COLLATERAL_ENGINE",
+          "predecessor": "TJ_SPT_RPG_COLLATERAL_ENGINE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_COLLATERALS_S",
+          "predecessor": "TJ_SPT_RPG_COLLATERALS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_COMPENSATION",
+          "predecessor": "TJ_SPT_RPG_COMPENSATION",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_COUNTRIES_S",
+          "predecessor": "TJ_SPT_RPG_COUNTRIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_DEPARTMENTS_S",
+          "predecessor": "TJ_SPT_RPG_DEPARTMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_DIVISIONS_S",
+          "predecessor": "TJ_SPT_RPG_DIVISIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_EMPLOYEES_S",
+          "predecessor": "TJ_SPT_RPG_EMPLOYEES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FAC_ALL_CO_BORROWERS_S",
+          "predecessor": "TJ_SPT_RPG_FAC_ALL_CO_BORROWERS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FAC_ALLOWED_CCY_CODES_S",
+          "predecessor": "TJ_SPT_RPG_FAC_ALLOWED_CCY_CODES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FAC_ALLOWED_PRODUCTS_S",
+          "predecessor": "TJ_SPT_RPG_FAC_ALLOWED_PRODUCTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITIES_S_DERIVED",
+          "predecessor": "TJ_SPT_RPG_FACILITIES_S_DERIVED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITY_CREDIT_RATINGS_S",
+          "predecessor": "TJ_SPT_RPG_FACILITY_CREDIT_RATINGS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITY_GROUPS_S",
+          "predecessor": "TJ_SPT_RPG_FACILITY_GROUPS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITY_PURPOSES_S",
+          "predecessor": "TJ_SPT_RPG_FACILITY_PURPOSES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITY_REG_LOCATIONS_S",
+          "predecessor": "TJ_SPT_RPG_FACILITY_REG_LOCATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACILITY_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_FACILITY_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FACT_BALANCES_S",
+          "predecessor": "TJ_SPT_RPG_FACT_BALANCES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FINANCE_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_FINANCE_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FORBEARANCE_MEASURES_S",
+          "predecessor": "TJ_SPT_RPG_FORBEARANCE_MEASURES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FX_DEAL_RATES_S",
+          "predecessor": "TJ_SPT_RPG_FX_DEAL_RATES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FX_RATES_S",
+          "predecessor": "TJ_SPT_RPG_FX_RATES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_GROUP_DIVISIONS_S",
+          "predecessor": "TJ_SPT_RPG_GROUP_DIVISIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_GROUP_ENTITIES_S",
+          "predecessor": "TJ_SPT_RPG_GROUP_ENTITIES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_GROUP_HOLDINGS_S",
+          "predecessor": "TJ_SPT_RPG_GROUP_HOLDINGS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_GROUP_LEDGERS_S",
+          "predecessor": "TJ_SPT_RPG_GROUP_LEDGERS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INDUSTRY_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_INDUSTRY_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INS_INT_RATE_SCHEDULES_S",
+          "predecessor": "TJ_SPT_RPG_INS_INT_RATE_SCHEDULES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INSTR_CREDIT_RATINGS_S",
+          "predecessor": "TJ_SPT_RPG_INSTR_CREDIT_RATINGS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INSTR_PAYMENT_SCHEDULES_S",
+          "predecessor": "TJ_SPT_RPG_INSTR_PAYMENT_SCHEDULES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INSTRUMENTS_S_DERIVED",
+          "predecessor": "TJ_SPT_RPG_INSTRUMENTS_S_DERIVED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INSTRUMENT_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_INSTRUMENT_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INTEREST_RATE_BRACKETS_S",
+          "predecessor": "TJ_SPT_RPG_INTEREST_RATE_BRACKETS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INTEREST_RATE_TRADES_S",
+          "predecessor": "TJ_SPT_RPG_INTEREST_RATE_TRADES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_INT_RATE_INSTRUMENTS_S",
+          "predecessor": "TJ_SPT_RPG_INT_RATE_INSTRUMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_ISINS_S",
+          "predecessor": "TJ_SPT_RPG_ISINS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_LEDGERS_S",
+          "predecessor": "TJ_SPT_RPG_LEDGERS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_MARKET_INTEREST_RATES_S",
+          "predecessor": "TJ_SPT_RPG_MARKET_INTEREST_RATES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_MARKET_RATE_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_MARKET_RATE_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_NON_FIXED_INT_RATE_TDE_S",
+          "predecessor": "TJ_SPT_RPG_NON_FIXED_INT_RATE_TDE_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_OPERATING_UNITS_S",
+          "predecessor": "TJ_SPT_RPG_OPERATING_UNITS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_OPERAT_UNIT_LOCATIONS_S",
+          "predecessor": "TJ_SPT_RPG_OPERAT_UNIT_LOCATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_OPER_UNIT_REG_LOCATIONS_S",
+          "predecessor": "TJ_SPT_RPG_OPER_UNIT_REG_LOCATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PAST_DUE_SETTLEMENTS_S",
+          "predecessor": "TJ_SPT_RPG_PAST_DUE_SETTLEMENTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_STARTED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_EOY_S",
+          "predecessor": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_EOY_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_S",
+          "predecessor": "TJ_SPT_RPG_POSTED_JOURNAL_LINES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRODUCT_GROUPS_S",
+          "predecessor": "TJ_SPT_RPG_PRODUCT_GROUPS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRODUCT_SUB_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_PRODUCT_SUB_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PROJECTS_S",
+          "predecessor": "TJ_SPT_RPG_PROJECTS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_PRPB_AGGREGATED_S_LEG_TYPE_CODE",
+          "predecessor": "TJ_SPT_RPG_PRPB_AGGREGATED_S_LEG_TYPE_CODE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RABO_GROUPS_S",
+          "predecessor": "TJ_SPT_RPG_RABO_GROUPS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATION_CREDIT_RATINGS_S",
+          "predecessor": "TJ_SPT_RPG_RELATION_CREDIT_RATINGS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATION_REG_LOCATIONS_S",
+          "predecessor": "TJ_SPT_RPG_RELATION_REG_LOCATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATIONS_S_DERIVED",
+          "predecessor": "TJ_SPT_RPG_RELATIONS_S_DERIVED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RELATION_TYPES_S",
+          "predecessor": "TJ_SPT_RPG_RELATION_TYPES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_REP_PRODUCT_GROUPS_S",
+          "predecessor": "TJ_SPT_RPG_REP_PRODUCT_GROUPS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_SETTLEMENT_METHODS_S",
+          "predecessor": "TJ_SPT_RPG_SETTLEMENT_METHODS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_SOCIAL_ECON_BALANCES_S",
+          "predecessor": "TJ_SPT_RPG_SOCIAL_ECON_BALANCES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_SOURCES_S",
+          "predecessor": "TJ_SPT_RPG_SOURCES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TDE_LEG_INT_R_SCHEDULES_S",
+          "predecessor": "TJ_SPT_RPG_TDE_LEG_INT_R_SCHEDULES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TDE_LEG_PMNT_SCHEDULES_S",
+          "predecessor": "TJ_SPT_RPG_TDE_LEG_PMNT_SCHEDULES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TDE_PROV_MOV_SCHEDULES_S",
+          "predecessor": "TJ_SPT_RPG_TDE_PROV_MOV_SCHEDULES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADE_CREDIT_RATINGS_S",
+          "predecessor": "TJ_SPT_RPG_TRADE_CREDIT_RATINGS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADE_GROUPS_S",
+          "predecessor": "TJ_SPT_RPG_TRADE_GROUPS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADE_LEGS_S",
+          "predecessor": "TJ_SPT_RPG_TRADE_LEGS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADE_REG_LOCATIONS_S",
+          "predecessor": "TJ_SPT_RPG_TRADE_REG_LOCATIONS_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_TRADES_S_DERIVED_PRODUCT_CODE",
+          "predecessor": "TJ_SPT_RPG_TRADES_S_DERIVED_PRODUCT_CODE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_FINALIZE_BOOKMARKS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_FINALIZE_BOOKMARKS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_FINALIZE_BOOKMARKS_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_POPULATION_FINISHED",
+          "predecessor": "TJ_SPT_RPG_POPULATION_FINISHED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_BATCH_FINISH",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_BATCH_FINISH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_BATCH_FINISH_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_FINALIZE_BOOKMARKS",
+          "predecessor": "TJ_SPT_RPG_FINALIZE_BOOKMARKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_UNLOCK_JET_ACTUALS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_UNLOCK_JET_ACTUALS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_UNLOCK_JET_ACTUALS_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_LOCK_JET_ACTUALS",
+          "predecessor": "TJ_SPT_RPG_LOCK_JET_ACTUALS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+          "predecessor": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_UNLOCK_JET_ADJUSTMENTS",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_RPG_UNLOCK_JET_ADJUSTMENTS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_SPF_RPG_UNLOCK_JET_ADJUSTMENTS_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_LOCK_JET_ADJUSTMENTS",
+          "predecessor": "TJ_SPT_RPG_LOCK_JET_ADJUSTMENTS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+          "predecessor": "TJ_SPT_RPG_RECON_LEDGER_BALANCES_S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

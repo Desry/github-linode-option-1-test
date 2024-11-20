@@ -1,0 +1,305 @@
+{
+  "description": "12000|Curve calibration check",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_MARKETDATA_EXPORT_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_MARKETDATA_EXPORT_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_CRV_HAID_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_HAID_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_HAID_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_OUT1_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_OUT1_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_OUT1_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_PC1_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PC1_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PC1_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_PC2_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PC2_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PC2_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_PC3_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PC3_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PC3_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_PRC_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PRC_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PRC_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_RISK1ZAC_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK1ZAC_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK1ZAC_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_RISK1_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK1_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK1_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_RISK2_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK2_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK2_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_CHK_REPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_CHK_REPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_CHK_REPORT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_HAID_PS_AM",
+          "predecessor": "T_MX_CRV_HAID_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_OUT1_PS_AM",
+          "predecessor": "T_MX_CRV_OUT1_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PC1_PS_AM",
+          "predecessor": "T_MX_CRV_PC1_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PC2_PS_AM",
+          "predecessor": "T_MX_CRV_PC2_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PC3_PS_AM",
+          "predecessor": "T_MX_CRV_PC3_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PRC_PS_AM",
+          "predecessor": "T_MX_CRV_PRC_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK1_PS_AM",
+          "predecessor": "T_MX_CRV_RISK1_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK1ZAC_PS_AM",
+          "predecessor": "T_MX_CRV_RISK1ZAC_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK2_PS_AM",
+          "predecessor": "T_MX_CRV_RISK2_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_RISK_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK_PS_AM",
+          "predecessor": "T_MX_CRV_RISK_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TS_CRV_RISK_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_TS_CRV_RISK_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_TS_CRV_RISK_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_REPORT_AM",
+          "predecessor": "T_MX_CRV_CHK_REPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_NA",
+          "predecessor": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

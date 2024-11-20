@@ -1,0 +1,20 @@
+{
+  "description": "VAR NA VAR_MS_1D_SQL_NA_PS",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s VAR_MS_1D_SQL_NA_PS -n FODRISK2NA -l ${LOG_FILE}"
+  }
+}

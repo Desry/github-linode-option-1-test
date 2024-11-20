@@ -1,0 +1,871 @@
+{
+  "description": "REPROCESS_OHO_FILES",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "lazyLoad": true,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "CLC"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "CLC",
+      "editorType": "TEXT",
+      "hint": "Occurrence of this workflow (DLY, CLC, etc.)",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC, etc.)"
+    },
+    {
+      "defaultValue": "SPF",
+      "editorType": "TEXT",
+      "hint": "REGION for which this workflow has to run",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_OHO_LEDGER_EOD_CNTRL",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_OHO_LEDGER_EOD_CNTRL",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_OHO_LEDGER_EOD_CNTRL_CLC",
+      "weight": "1"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_BUILD_ENRICHED_BALANCES",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_BUILD_ENRICHED_BALANCES",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_BUILD_ENRICHED_BALANCES_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_LEDGER_EOD_CNTRL",
+          "predecessor": "TJ_FDW_RPG_OHO_LEDGER_EOD_CNTRL",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_BUILD_ENRICHED_BALANCES",
+          "predecessor": "TJ_FDW_RPG_BUILD_ENRICHED_BALANCES",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_AC_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_AC_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_AC_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_BA_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_CA_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_CA_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_CA_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_EX_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_EX_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_EX_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_GL_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_GL_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_GL_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_MO_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_MO_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_MO_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_PL_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_PL_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_PL_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_PR_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_PR_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_PR_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_AC_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_AC_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_EX_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_EX_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_GL_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_GL_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_PL_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_PL_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_EXTRACT_RC_FILE",
+      "processingTemplate": "TJ_FDW_RPG_EXTRACT_RC_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_EXTRACT_RC_FILE_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_BA_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_GL_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_GL_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_PL_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_PL_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_FINISHED",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_FINISHED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_OHO_EXTRACT_FILE_POPULATION_FINISHED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_CA_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_CA_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_MO_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_MO_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_EXTRACT_PR_FILE",
+          "predecessor": "TJ_FDW_RPG_EXTRACT_PR_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_OHO_XFER_FILE_POPULATION_STARTED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_FINISHED",
+          "predecessor": "TJ_FDW_RPG_OHO_EXTRACT_FILE_POPULATION_FINISHED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_AC_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_AC_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_AC_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_BA_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_BA_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_BA_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_CA_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_CA_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_CA_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_EX_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_EX_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_EX_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_GL_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_GL_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_GL_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_MO_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_MO_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_MO_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_PL_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_PL_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_PL_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_PR_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_PR_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_PR_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_RC_FILE",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_RC_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_RC_FILE_CLC",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_TRANSFER_OK_FILE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_TRANSFER_OK_FILE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_TRANSFER_OK_FILE_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_AC_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_AC_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_BA_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_BA_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_CA_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_CA_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_EX_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_EX_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_GL_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_GL_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_MO_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_MO_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_PL_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_PL_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_PR_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_PR_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_RC_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_RC_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_FINISHED",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_FINISHED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_SPF_RPG_OHO_XFER_FILE_POPULATION_FINISHED_CLC",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "predecessor": "TJ_FDW_RPG_OHO_XFER_FILE_POPULATION_STARTED",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_RPG_TRANSFER_OK_FILE",
+          "predecessor": "TJ_FDW_RPG_TRANSFER_OK_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

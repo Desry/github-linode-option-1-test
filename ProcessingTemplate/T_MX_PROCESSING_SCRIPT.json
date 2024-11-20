@@ -1,0 +1,44 @@
+{
+  "description": "Generic Murex Processing Script task",
+  "folder": "MX_GENERIC",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "GENERIC"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "# ${description}\ncd ${HOME}/eod_scripts\ntitle=$(echo \"${name}\" | cut -d ' ' -f 1)\n./xmlRequestWrapper.sh -s ${processing_script} -n ${nickname} -l ${SCHEDULER_LOGS}/${loadDateYYYYMMDD}.${title}.${currentDateYYYYMMDD}.${currentTimeHHMMSS}.out"
+  },
+  "designParameters": 
+  [
+    {
+      "allowExpressions": true,
+      "editorType": "TEXT",
+      "name": "description",
+      "required": true,
+      "title": "description"
+    },
+    {
+      "allowExpressions": true,
+      "editorType": "TEXT",
+      "name": "processing_script",
+      "required": true,
+      "title": "processing_script"
+    },
+    {
+      "allowExpressions": true,
+      "editorType": "TEXT",
+      "name": "nickname",
+      "required": true,
+      "title": "nickname"
+    }
+  ]
+}

@@ -1,0 +1,335 @@
+{
+  "owner": "api_user",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_XMLFILES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_XMLFILES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "4969_TEST",
+      "processingTemplate": "4969_TEST",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "DL_AML_DATA_EXPORT",
+      "processingTemplate": "DL_AML_DATA_EXPORT",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_OSC_TRNEW",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_OSC_TRNEW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_ARM_SD_DEALS",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_ARM_SD_DEALS",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_ARM_TD_DEALS_CPTY_ROLES_ARISE",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_ARM_TD_DEALS_CPTY_ROLES_ARISE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_OSC_TRCXL",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_OSC_TRCXL",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_XMLCOMMUNICATES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_XMLCOMMUNICATES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_COMMUNICATES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_ARM_OSC_COMM_XML.30__FINREP__EMIR.WF_LOAD_ARM_SD_COMMUNICATES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "DEPENDED_UPON_WFW",
+      "processingTemplate": "DEPENDED_UPON_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5529_IBMMQ_SCAN_MODE_ONCE_TEST",
+      "processingTemplate": "5529_IBMMQ_SCAN_MODE_ONCE_TEST",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5351_SUB_WFW",
+      "processingTemplate": "5351_SUB_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "createTicketSuccessfull.MCA-DEMO.wst",
+      "processingTemplate": "createTicketSuccessfull.MCA-DEMO.wst",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "tag": "MCA-DEMO"
+      }
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_VAL_ARM_SD_DEALS",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_VAL_ARM_SD_DEALS",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "CreateTicketSuccessfull.IncMgmt.Gbl.wst",
+      "processingTemplate": "CreateTicketSuccessfull.IncMgmt.Gbl.wst",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "tag": "MCA-DEMO"
+      }
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.LANDING.30__FINREP__EMIR.WF_LOAD_L_ARISE_DATA",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.LANDING.30__FINREP__EMIR.WF_LOAD_L_ARISE_DATA",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "DUMMY",
+      "processingTemplate": "DUMMY",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_TD_DEALS_DATA_ARISE",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_TD_DEALS_DATA_ARISE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR",
+      "processingTemplate": "FINREP.EMIR",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "4853_WFW",
+      "processingTemplate": "4853_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5573_TEST",
+      "processingTemplate": "5573_TEST",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_ARM_SD_DEALS_CPTY_ROLES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.DEALS.30__FINREP__EMIR.WF_LOAD_ARM_SD_DEALS_CPTY_ROLES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "create_ticket.MCA-DEMO.wst",
+      "processingTemplate": "create_ticket.MCA-DEMO.wst",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "close_notes": "close notes",
+        "cmdb_ci": "PRG-SVVL-CZCHOLSPC000699",
+        "comments_and_work_notes": "Comments",
+        "description": "Just test ticket",
+        "group": "GLOBAL-OPS.MIDDLEWARE",
+        "short_description": "MCA: Test ticket",
+        "u_external_id": "External ids",
+        "u_external_system": "MCA",
+        "u_object": "Object",
+        "work_notes": "work notes"
+      }
+    },
+    {
+      "name": "4969_SUB_WFW",
+      "processingTemplate": "4969_SUB_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5504_MISSING_SEGMENTS_REPLICATION",
+      "processingTemplate": "5504_MISSING_SEGMENTS_REPLICATION",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "DEPENDENT_WFW",
+      "processingTemplate": "DEPENDENT_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES.30__FINREP__EMIR.WF_LOAD_ARM_SD_COUNTERPARTIES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES.30__FINREP__EMIR.WF_LOAD_ARM_SD_COUNTERPARTIES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.LANDING",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.LANDING",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES.30__FINREP__EMIR.WF_VAL_ARM_SD_COUNTERPARTIES",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES.30__FINREP__EMIR.WF_VAL_ARM_SD_COUNTERPARTIES",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5172_SUB_WFW",
+      "processingTemplate": "5172_SUB_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5075_TEST",
+      "processingTemplate": "5075_TEST",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5351_FE_SUB_WFW",
+      "processingTemplate": "5351_FE_SUB_WFW",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "CreateTicket.IncMgmt.Gbl.wst",
+      "processingTemplate": "CreateTicket.IncMgmt.Gbl.wst",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES.30__FINREP__EMIR.WF_LOAD_TD_COUNTERPARTIES_ARISE",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.COUNTERPARTIES.30__FINREP__EMIR.WF_LOAD_TD_COUNTERPARTIES_ARISE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "FINREP.EMIR.PRG_ARISE_MART.DEALS",
+      "processingTemplate": "FINREP.EMIR.PRG_ARISE_MART.DEALS",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "5571_TEST",
+      "processingTemplate": "5571_TEST",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    }
+  ]
+}

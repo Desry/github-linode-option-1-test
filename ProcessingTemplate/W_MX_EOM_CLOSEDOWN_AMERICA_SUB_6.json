@@ -1,0 +1,17 @@
+{
+  "description": "12000|CLOSEDOWN AMERICA check_EOM exit 6: 1JAN is weekday",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  }
+}

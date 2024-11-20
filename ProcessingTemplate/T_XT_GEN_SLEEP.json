@@ -1,0 +1,19 @@
+{
+  "endpointType": "USER",
+  "folder": "XT_MUREX_FUTURES",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "timescape_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "WINDOWS",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "REM force inheritance of Task variables\necho ${TIME}\necho sleeping ${SleepTime} seconds\ncall timeout ${SleepTime}\nset resexe=0\nexit %resexe%"
+  }
+}

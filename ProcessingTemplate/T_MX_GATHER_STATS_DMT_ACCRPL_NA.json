@@ -1,0 +1,21 @@
+{
+  "description": "gather statistics for DMT_ACCRPL_NA",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "no_script"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts/maintenance\nsource /appl/murex/config/$MX_ENVIRONMENT.env.conf\necho | sqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM CASH_ADJ_MIG_REP\necho | sqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM ACCRUAL_PAST_CF_REP\necho | sqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM ACCRUING_FEE_REP\necho | sqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM ACCRUAL_FUT_CF_REP\necho | sqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM ACCRUAL_EVT_DATE_REP\necho | sqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM ACCRUAL_UDF_DEAL_REP"
+  }
+}

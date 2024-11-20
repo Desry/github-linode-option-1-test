@@ -1,0 +1,20 @@
+{
+  "description": "VaR Market Risk North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/\n./File_Naming_Interface.sh -p integration/reporting/EOD/Americas -f RI_MISS_SHIFT_10D_AM -f RI_MISS_SHIFT_1D_AM -onlydateatend -l ${LOG_FILE}"
+  }
+}

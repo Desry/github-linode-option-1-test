@@ -1,0 +1,358 @@
+{
+  "description": "12000|Market data import",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "R_MX_MARKETRATESHEET_IMPORT_AM",
+      "processingTemplate": "R_MX_MARKETRATESHEET_IMPORT_AM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_MARKETRATESHEET_IMPORT_AM"
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_10S",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_10S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_10S"
+    },
+    {
+      "name": "R_MX_BONDPRICES_IMPORT_AM",
+      "processingTemplate": "R_MX_BONDPRICES_IMPORT_AM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_BONDPRICES_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_10S",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_10S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BONDPRICES_IMPORT_AM",
+      "processingTemplate": "T_MX_BONDPRICES_IMPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BONDPRICES_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_BONDPRICES_IMPORT_AM",
+          "predecessor": "R_MX_BONDPRICES_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_15S",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_15S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_15S"
+    },
+    {
+      "name": "R_MX_TURNS_IMPORT_NA",
+      "processingTemplate": "R_MX_TURNS_IMPORT_NA",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_TURNS_IMPORT_NA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_15S",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_15S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_20S",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_20S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_20S"
+    },
+    {
+      "name": "R_MX_FXSPOT_IMPORT_AM",
+      "processingTemplate": "R_MX_FXSPOT_IMPORT_AM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_FXSPOT_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_20S",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_NA_SLEEP_20S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FXSPOT_IMPORT_AM",
+      "processingTemplate": "T_MX_FXSPOT_IMPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FXSPOT_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_FXSPOT_IMPORT_AM",
+          "predecessor": "R_MX_FXSPOT_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_EQUITYPRICES_IMPORT_AM",
+      "processingTemplate": "R_MX_EQUITYPRICES_IMPORT_AM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXSPOT_IMPORT_AM",
+          "predecessor": "T_MX_FXSPOT_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EQUITYPRICES_IMPORT_AM",
+      "processingTemplate": "T_MX_EQUITYPRICES_IMPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_EQUITYPRICES_IMPORT_AM",
+          "predecessor": "R_MX_EQUITYPRICES_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETRATESHEET_IMPORT_AM",
+      "processingTemplate": "T_MX_MARKETRATESHEET_IMPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_MARKETRATESHEET_IMPORT_AM",
+          "predecessor": "R_MX_MARKETRATESHEET_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+      "processingTemplate": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_IMPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+      "processingTemplate": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+          "predecessor": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_SECURITYPRICES_IMPORT_AM",
+      "processingTemplate": "R_MX_SECURITYPRICES_IMPORT_AM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_SECURITYPRICES_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SECURITYPRICES_IMPORT_AM",
+      "processingTemplate": "T_MX_SECURITYPRICES_IMPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SECURITYPRICES_IMPORT_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_SECURITYPRICES_IMPORT_AM",
+          "predecessor": "R_MX_SECURITYPRICES_IMPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TURNS_IMPORT_NA",
+      "processingTemplate": "T_MX_TURNS_IMPORT_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_TURNS_IMPORT_NA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_TURNS_IMPORT_NA",
+          "predecessor": "R_MX_TURNS_IMPORT_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    }
+  ]
+}

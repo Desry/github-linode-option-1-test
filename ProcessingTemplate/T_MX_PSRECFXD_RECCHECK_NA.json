@@ -1,0 +1,20 @@
+{
+  "description": "Position Server Reconciliation recCheck.sh North America FXD",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts/psRec\n./recCheck.sh -r NA -t FXDLT -m Y -s EOD -x 500"
+  }
+}

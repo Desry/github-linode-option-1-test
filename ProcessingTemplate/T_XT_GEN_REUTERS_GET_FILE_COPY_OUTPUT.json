@@ -1,0 +1,19 @@
+{
+  "endpointType": "USER",
+  "folder": "XT_CRIS_REUTERS_FIX_1830_DOWNLOAD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "timescape_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "WINDOWS",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "REM force inheritance of Task variables\nif EXIST ${FileWatcherFileName} GOTO FOUND\nEcho ${FileWatcherFileName} not found, step is skipped\nset resexe=0\nGOTO END\n:FOUND\nIF \"${OutgoingFileName}\"==\"\" GOTO SKIP\n:COPYFILE\nEcho on\n${XT_COPYFILE} from=${FileWatcherFileName} to=${OutgoingFileName} ${FileCopyOptions}\nEcho off\nset retcode=%errorlevel%\necho CopyFile ended with return code: %retcode%\nIF %retcode% EQU 0 GOTO NORMALFLOW\nGOTO ERRORFLOW\n:SKIP\nEcho OutgoingFileName not defined, step is skipped\nset resexe=0\nGOTO END\n:NORMALFLOW\nset resexe=0\nGOTO END\n:ERRORFLOW\nset resexe=1\nGOTO END\n:END\nexit %resexe%"
+  }
+}

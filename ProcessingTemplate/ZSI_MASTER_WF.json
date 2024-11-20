@@ -1,0 +1,117 @@
+{
+  "description": "WF zbierające master Listenery",
+  "folder": "ZSI",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "owner": "PZ003950",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "ZSI"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+  },
+  "actions": 
+  [
+    {
+      "processingActionType": "KILL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_COMPLETED",
+      "processingCommand": {
+        "actionTargetType": "RELATED",
+        "keepForcedStatus": true,
+        "relation": {
+          "relationType": "CHILDREN"
+        },
+        "restartType": "RESTART_FROM_BEGINNING"
+      }
+    }
+  ],
+  "items": 
+  [
+    {
+      "disallowConcurrentExecution": false,
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "RHJPMSTO",
+      "processingTemplate": "RHJPMSTO",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "RHJ${ENV1}MSTO",
+      "ignoreCondition": {
+        "criteria": 
+        [
+          {
+            "fieldName": "${GLOBAL_SKIPRQ}",
+            "operator": "EQ",
+            "value": "S"
+          },
+          {
+            "fieldName": "${GLOBAL_SKIPMD5}",
+            "operator": "EQ",
+            "value": "S"
+          }
+        ],
+        "operator": "AND"
+      }
+    },
+    {
+      "disallowConcurrentExecution": false,
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "RHJPMSTI",
+      "processingTemplate": "RHJPMSTI",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "RHJ${ENV1}MSTI",
+      "ignoreCondition": {
+        "criteria": 
+        [
+          {
+            "fieldName": "${GLOBAL_SKIPRQ}",
+            "operator": "EQ",
+            "value": "S"
+          },
+          {
+            "fieldName": "${GLOBAL_SKIPMD5}",
+            "operator": "EQ",
+            "value": "S"
+          }
+        ],
+        "operator": "AND"
+      }
+    },
+    {
+      "disallowConcurrentExecution": false,
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "RHJPMSTR",
+      "processingTemplate": "RHJPMSTR",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "RHJ${ENV1}MSTR"
+    }
+  ]
+}

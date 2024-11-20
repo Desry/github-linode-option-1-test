@@ -1,0 +1,634 @@
+{
+  "description": "RiskReport Sub-workflow for NA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_MR_NA_1DVR_PS_AM",
+      "processingTemplate": "T_MX_MR_NA_1DVR_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+      "processingTemplate": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_MR_NA_COMDG_PS",
+      "processingTemplate": "T_MX_MR_NA_COMDG_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.1",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_CRRATG_PS",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports - MRL_AMERICAS_EOD_CreditByRating",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_CRRATG_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.10",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_IRFIXRISK_PS",
+      "templateParameters": {
+        "description": "Risk Daily EOD Reports - LCS - MR_NA_IRFIXRISK_PS",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_IRFIXRISK_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.11",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_LIQGAP_PS",
+      "templateParameters": {
+        "description": "Risk Daily EOD Reports - LCS - MR_NA_LIQGAP_PS",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_LIQGAP_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.12",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_NF_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_NF_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_AMERICA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.13",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_NG_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_NG_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_NA_COMDG_PS",
+          "predecessor": "T_MX_MR_NA_COMDG_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.14",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_REP_DATES_AM",
+      "templateParameters": {
+        "description": "PS for populating all Reporting Dates to support ML AMERICA LCS",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_REP_DATES_NA_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.1",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.15",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_RMH_CTPY_PS",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports - MRL_AMERICAS_EOD_RMH_CTPY",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_RMH_CTPY_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.10",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.10",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.16",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_RMH_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_RMH_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.11",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.11",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.17",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_S_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_S_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.12",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.12",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.18",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_XCCYB_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_XCCYB_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.13",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.13",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.2",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_CRSEC_PS",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports - MRL_AMERICAS_EOD_CreditBySector",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_CRSEC_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.14",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.14",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.3",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_FD_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_FD_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.15",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.15",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.4",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_FDCC_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_FDCC_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.16",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.16",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.5",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_IDBP_PS",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_IDBP_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.17",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.17",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_NA_LIQGAP_CASH_PS",
+      "processingTemplate": "T_MX_MR_NA_LIQGAP_CASH_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.5",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.5",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MIS_MR_EXC_PS_NA",
+      "processingTemplate": "T_MX_MIS_MR_EXC_PS_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_NA_LIQGAP_CASH_PS",
+          "predecessor": "T_MX_MR_NA_LIQGAP_CASH_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.19",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_IDZLW_PS",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_IDZLW_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MIS_MR_EXC_PS_NA",
+          "predecessor": "T_MX_MIS_MR_EXC_PS_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.6",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_IDCP_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_IDCP_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.18",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.18",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_NA_CRBUCK_PS",
+      "processingTemplate": "T_MX_MR_NA_CRBUCK_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.6",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.6",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.7",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_IDDFCP_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_IDDFCP_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.2",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.8",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_IDP_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_IDP_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.3",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PROCESSING_SCRIPT.9",
+      "processingTemplate": "T_MX_PROCESSING_SCRIPT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MR_NA_INFL_PS_AM",
+      "templateParameters": {
+        "description": "Daily Risk EOD Reports",
+        "nickname": "FODRISK2NA",
+        "processing_script": "MR_NA_INFL_PS"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PROCESSING_SCRIPT.4",
+          "predecessor": "T_MX_PROCESSING_SCRIPT.4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

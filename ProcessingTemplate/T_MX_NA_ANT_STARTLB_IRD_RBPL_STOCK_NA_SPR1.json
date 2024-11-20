@@ -1,0 +1,20 @@
+{
+  "description": "This command will start this specific calculation set",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./lbkRequestWrapper.sh -b IRD_NA -s start -c IRD_RBPL_Stock_NA_Spr1 -l ${LOG_FILE}"
+  }
+}

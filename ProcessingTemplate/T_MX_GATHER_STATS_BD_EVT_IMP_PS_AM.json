@@ -1,0 +1,21 @@
+{
+  "description": "gather statistics for BD_EVT_IMP_PS_AM",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "no_script"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts/maintenance\nsource /appl/murex/config/$MX_ENVIRONMENT.env.conf\nsqlplus /@$DB_SID_DM_WALLET @gather_statistics_for_one_table.sql $DB_SCHEMA_DM BD_EVT_IMP_REP"
+  }
+}

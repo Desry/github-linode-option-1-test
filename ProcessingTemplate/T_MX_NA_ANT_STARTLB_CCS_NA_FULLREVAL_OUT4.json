@@ -1,0 +1,20 @@
+{
+  "description": "This command will start this specific calculation set",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./lbkRequestWrapper.sh -b CCS_NA -s start -c CCS_NA_FullReval_Out4 -l ${LOG_FILE}"
+  }
+}

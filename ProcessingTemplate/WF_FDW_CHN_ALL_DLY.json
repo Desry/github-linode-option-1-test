@@ -1,0 +1,287 @@
+{
+  "description": "FDW Daily batch",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "DLY"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "DLY",
+      "editorType": "TEXT",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC etc.,)"
+    },
+    {
+      "defaultValue": "CHN",
+      "editorType": "TEXT",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "TJ_FDW_MAIN_START",
+      "processingTemplate": "TJ_FDW_MAIN_START",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_MAIN_START_DLY"
+    },
+    {
+      "name": "TJ_FDW_CORE_BOOK_DATES",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_CORE_BOOK_DATES",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_CORE_BOOK_DATES_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_MAIN_START",
+          "predecessor": "TJ_FDW_MAIN_START",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_CHN_START_DLY",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "WF_FDW_CHN_START_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "WF_GLS_CHN_GEN_BEGIN_DLY.TJ_GLS_APP_ENGINE.1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "PEOPLESOFT",
+          "taskType": "PEOPLESOFT_APPLICATION_ENGINE_TASK",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "WF_GLS_CHN_GEN_BEGIN_DLY",
+          "workflowTemplateItem": "TJ_GLS_APP_ENGINE.1"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_BATCH_FINISH",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_BATCH_FINISH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_BATCH_FINISH_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_CORE_BOOK_DATES",
+          "predecessor": "TJ_FDW_CORE_BOOK_DATES",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_CHN_CORE_DER_BAL_DLY",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "WF_FDW_CHN_CORE_DER_BAL_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_CHN_GLOBAL_REPORTING_DLY",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "WF_FDW_CHN_GLOBAL_REPORTING_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "WF_FDW_CHN_CORE_FIN_DLY.TJ_FDW_CORE_VAL_LGR_VS_BALS_ADJUSTMENT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "WF_FDW_CHN_CORE_FIN_DLY",
+          "workflowTemplateItem": "TJ_FDW_CORE_VAL_LGR_VS_BALS_ADJUSTMENT"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "WF_FDW_CHN_CORE_FIN_DLY.TJ_FDW_CORE_VAL_LGR_VS_BALS_ALLOCATION",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "WF_FDW_CHN_CORE_FIN_DLY",
+          "workflowTemplateItem": "TJ_FDW_CORE_VAL_LGR_VS_BALS_ALLOCATION"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_IDY_BATCH_START",
+      "passBy": true,
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_IDY_BATCH_START",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_IDY_BATCH_START_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_BATCH_FINISH",
+          "predecessor": "TJ_FDW_BATCH_FINISH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "WF_GLS_CHN_GEN_END_DLY.TJ_GLS_APP_ENGINE",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "PEOPLESOFT",
+          "taskType": "PEOPLESOFT_APPLICATION_ENGINE_TASK",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "WF_GLS_CHN_GEN_END_DLY",
+          "workflowTemplateItem": "TJ_GLS_APP_ENGINE"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_CHN_SET_IDY_ON",
+      "processingTemplate": "TJ_FDW_CHN_SET_IDY_ON",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SET_VARIABLE_VALUE",
+      "title": "JO_FDW_CHN_SET_IDY_ON_DLY",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_IDY_BATCH_START",
+          "predecessor": "TJ_FDW_IDY_BATCH_START",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_MAIN_FINISH",
+      "processingTemplate": "TJ_FDW_MAIN_FINISH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_MAIN_FINISH_DLY",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_CHN_SET_IDY_ON",
+          "predecessor": "TJ_FDW_CHN_SET_IDY_ON",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "INTERNAL",
+          "taskType": "SET_VARIABLE_VALUE"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_IDY_BATCH_START",
+          "predecessor": "TJ_FDW_IDY_BATCH_START",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_MAIN_START",
+          "predecessor": "TJ_FDW_MAIN_START",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_CHN_FMA_MATCH_FIN_DLY",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "WF_FDW_CHN_FMA_MATCH_FIN_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_CHN_ROL_MATCH_FIN_DLY",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "WF_FDW_CHN_ROL_MATCH_FIN_DLY",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "description": "12000|set funding rate, export Sparc and copy IPV MDS",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_CRV_CHK_AM",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_CRV_CHK_AM",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_REP_DATE_MOVE",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_REP_DATE_MOVE",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_MD_COPY_PCIPV_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MD_COPY_PCIPV_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MD_COPY_PCIPV_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_MD_COPY_PF_FO_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MD_COPY_PF_FO_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MD_COPY_PF_FO_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_TRUNCATE_PS_PC_CRV_CONF_TABLES",
+      "priority": "0",
+      "processingTemplate": "T_MX_TRUNCATE_PS_PC_CRV_CONF_TABLES",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_TRUNCATE_PS_PC_CRV_CONF_TABLES",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_PS_PC_CRV_CONF",
+      "priority": "0",
+      "processingTemplate": "T_MX_PS_PC_CRV_CONF",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_PS_PC_CRV_CONF",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TRUNCATE_PS_PC_CRV_CONF_TABLES",
+          "predecessor": "T_MX_TRUNCATE_PS_PC_CRV_CONF_TABLES",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

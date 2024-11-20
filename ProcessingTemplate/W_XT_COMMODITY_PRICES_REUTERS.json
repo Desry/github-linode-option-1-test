@@ -1,0 +1,160 @@
+{
+  "owner": "oleksandr.semichev",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "lockState": "EXCLUSIVE",
+      "name": "L_W_XT_COMMODITY_PRICES_REUTERS",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "resource": "L_W_XT_COMMODITY_PRICES_REUTERS",
+      "resourceType": "LOCK",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "W_XT_GEN_TOOLRUNNER",
+      "processingTemplate": "W_XT_GEN_TOOLRUNNER",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_PRICES_REUTERS_GET_FILES",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "ToolName": "E:\\Timescape\\Tools\\ReutersRestApi\\ReutersRestApi.exe",
+        "ToolParameters": "E:\\Timescape\\Configs\\ReutersRestApi\\Commodity_Prices.xml"
+      }
+    },
+    {
+      "name": "W_XT_GEN_SLEEP",
+      "processingTemplate": "W_XT_GEN_SLEEP",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_PRICES_REUTERS_SLEEP",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "SleepTime": 0
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_TOOLRUNNER",
+          "predecessor": "W_XT_GEN_TOOLRUNNER",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_XT_GEN_REUTERS_GET_FILE",
+      "processingTemplate": "W_XT_GEN_REUTERS_GET_FILE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_PRICES_REUTERS_DOWNLOAD_RESPONSE",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "FileWatcherFileName": "E:\\Cris_data\\Reuters\\Commodity_Prices_EOD_Reuters.csv",
+        "FileWatcherOptions": "leadtime=0 interval=30 retries=240"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_SLEEP",
+          "predecessor": "W_XT_GEN_SLEEP",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_XT_GEN_IMP_IMPORT",
+      "processingTemplate": "W_XT_GEN_IMP_IMPORT",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_PRICES_REUTERS_IMPORT",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "APRConfigName": "Commodity_Prices_Reuters",
+        "APRInputFile": "E:\\CRIS_DATA\\Reuters\\Commodity_Prices_EOD_Reuters.csv",
+        "ImportFileName": "E:\\CRIS_DATA\\Reuters\\Checked\\Commodity_Prices_EOD_Reuters.csv.checked",
+        "ImportTDFName": "E:\\Timescape\\TDF\\Import\\PostApplyPriceRules\\Import_Commodity_Prices_Reuters.tdf"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_REUTERS_GET_FILE",
+          "predecessor": "W_XT_GEN_REUTERS_GET_FILE",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_XT_GEN_REUTERS_GET_FILE.1",
+      "processingTemplate": "W_XT_GEN_REUTERS_GET_FILE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_PRICES_REUTERS_DOWNLOAD_NOTES",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "FileWatcherFileName": "E:\\Cris_data\\Reuters\\Commodity_Prices_EOD_Reuters.csv.notes.txt",
+        "FileWatcherOptions": "leadtime=0 interval=30 retries=240"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_SLEEP",
+          "predecessor": "W_XT_GEN_SLEEP",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_XT_GEN_REUTERS_GET_FILE.2",
+      "processingTemplate": "W_XT_GEN_REUTERS_GET_FILE",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_XT_COMMODITY_PRICES_REUTERS_DOWNLOAD_PARTIAL",
+      "workflowType": "STANDARD",
+      "templateParameters": {
+        "FileWatcherFileName": "E:\\Cris_data\\Reuters\\Commodity_Prices_EOD_Reuters.partial.csv",
+        "FileWatcherOptions": "leadtime=0 interval=30 retries=240"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_XT_GEN_SLEEP",
+          "predecessor": "W_XT_GEN_SLEEP",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

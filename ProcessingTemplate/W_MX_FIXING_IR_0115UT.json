@@ -1,0 +1,158 @@
+{
+  "description": "20105|upload of IR fixing 01:15 LATAM indices",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_M_SCH_DATES_GENERIC",
+      "processingTemplate": "T_MX_M_SCH_DATES_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_M_SCH_DATES_FIXING_IR_0115UT",
+      "templateParameters": {
+        "WAIT_SECONDS": "10"
+      }
+    },
+    {
+      "name": "T_MX_CHECK_25DEC1JAN_FIXING_IR0115",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_25DEC1JAN_FIXING_IR0115",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_25DEC1JAN_FIXING_IR0115",
+      "weight": "1",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FINISHED",
+          "condition": {
+            "criteria": 
+            [
+              {
+                "fieldName": "exitCode",
+                "operator": "EQ_NUM",
+                "value": "4"
+              }
+            ],
+            "operator": "AND"
+          },
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "RELATED",
+            "forbidChildrenStart": false,
+            "forceChildren": true,
+            "keepForcedStatus": false,
+            "killChildren": false,
+            "operator": "",
+            "relation": {
+              "peer": "W_MX_FIXING_IR_0115UT_SUB",
+              "relationType": "PEER"
+            },
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        },
+        {
+          "processingActionType": "ADD_TAG",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FINISHED",
+          "condition": {
+            "criteria": 
+            [
+              {
+                "fieldName": "exitCode",
+                "operator": "EQ_NUM",
+                "value": "4"
+              }
+            ],
+            "operator": "AND"
+          },
+          "processingCommand": {
+            "actionTargetType": "RELATED",
+            "operator": "",
+            "relation": {
+              "peer": "W_MX_FIXING_IR_0115UT_SUB",
+              "relationType": "PEER"
+            },
+            "restartType": "RESTART_FROM_BEGINNING",
+            "value": "SKIPPED"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_M_SCH_DATES_GENERIC",
+          "predecessor": "T_MX_M_SCH_DATES_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_WAIT_10S",
+      "processingTemplate": "T_MX_WAIT_10S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_WAIT_10S_FIXING_IR_LATAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_25DEC1JAN_FIXING_IR0115",
+          "predecessor": "T_MX_CHECK_25DEC1JAN_FIXING_IR0115",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "W_MX_FIXING_IR_0115UT_SUB",
+      "processingTemplate": "W_MX_FIXING_IR_0115UT_SUB",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_MX_FIXING_IR_0115UT_SUB",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_10S",
+          "predecessor": "T_MX_WAIT_10S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

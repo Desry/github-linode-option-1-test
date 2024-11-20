@@ -1,0 +1,20 @@
+{
+  "description": "Matched Funding Reconciliation",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts\n${HOME}/scripts/File_Naming_Interface.sh -p integration/reporting/EOD/Americas -f AM_MATCH_FUNDING_Trade -f AM_MATCH_FUNDING_Cash -l ${LOG_FILE}"
+  }
+}

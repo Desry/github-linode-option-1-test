@@ -1,0 +1,117 @@
+{
+  "owner": "Sireesha.Ponduru",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+  },
+  "items": 
+  [
+    {
+      "endpoint": "user3_FS",
+      "endpointType": "SFTP",
+      "name": "FS_FILE_SENSOR_JOB_01_DLY",
+      "processingTemplate": "FS_FILE_SENSOR_JOB_01_DLY",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNode": "regression_appserver2_fm",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH"
+    },
+    {
+      "endpoint": "user1",
+      "endpointType": "SSH",
+      "name": "TJ_10_MINUTE_WAIT_01_JOB",
+      "processingTemplate": "TJ_10_MINUTE_WAIT_01_JOB",
+      "processingType": "TASK",
+      "serverNode": "regression_appserver1",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_WAIT_JOB_01_DLY"
+    },
+    {
+      "name": "TJ_CREATE_FILE_01_JOB",
+      "processingTemplate": "TJ_CREATE_FILE_01_JOB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_CREATE_FILE_JOB_01_DLY",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_10_MINUTE_WAIT_01_JOB",
+          "predecessor": "TJ_10_MINUTE_WAIT_01_JOB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_CHECK_FILE_01_JOB",
+      "processingTemplate": "TJ_CHECK_FILE_01_JOB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_CHECK_FILE_JOB_01_DLY",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_CREATE_FILE_01_JOB",
+          "predecessor": "TJ_CREATE_FILE_01_JOB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_DELETE_FILE_01_JOB",
+      "processingTemplate": "TJ_DELETE_FILE_01_JOB",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_DELETE_FILE_JOB_01_DLY",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "FS_FILE_SENSOR_JOB_01_DLY",
+          "predecessor": "FS_FILE_SENSOR_JOB_01_DLY",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_CHECK_FILE_01_JOB",
+          "predecessor": "TJ_CHECK_FILE_01_JOB",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

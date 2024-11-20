@@ -1,0 +1,20 @@
+{
+  "description": "Import of security prices North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData\n./GlobalMarketDataExecute.sh -update -type:securityprices -file:PC_EOD_NAMERICAS_securityprices -date:TODAY -body:bodyfilter -mds:PC_EOD_NAMERICAS"
+  }
+}

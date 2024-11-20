@@ -1,0 +1,11 @@
+{
+  "owner": "api_user",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "Z_OS",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "Z_OS_COMMAND",
+  "customFieldValues": {
+  }
+}

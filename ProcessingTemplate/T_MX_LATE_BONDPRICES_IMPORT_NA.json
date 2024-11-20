@@ -1,0 +1,20 @@
+{
+  "description": "Market Data import of late bond prices North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData\n./GlobalMarketDataExecute.sh -update -type:bondprices -body:bodyfilter_bond_update -file:PC_EOD_NAMERICAS_bondprices -date:TODAY -mds:PC_EOD_NAMERICAS"
+  }
+}

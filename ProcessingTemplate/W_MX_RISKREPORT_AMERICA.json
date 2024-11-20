@@ -1,0 +1,112 @@
+{
+  "description": "12000|Risk Reports",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_GENERIC_REPORT_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_GENERIC_REPORT_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_VAR_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_VAR_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_FO_DATEMOVE_AMERICA.T_MX_FODRISK2NA_DATE_MOVE_AM",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_FO_DATEMOVE_AMERICA",
+      "workflowTemplateItem": "T_MX_FODRISK2NA_DATE_MOVE_AM"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_RISKREPORT_AS_MR_REPORTS.T_MX_MR_REPORT_SUBSCRIPTION_ASIA",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_RISKREPORT_AS_MR_REPORTS",
+      "workflowTemplateItem": "T_MX_MR_REPORT_SUBSCRIPTION_ASIA"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "W_MX_RISKREPORT_AMERICA_MR_LIMITS",
+      "processingTemplate": "W_MX_RISKREPORT_AMERICA_MR_LIMITS",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "W_MX_RISKREPORT_NA_MR_REPORTS",
+      "processingTemplate": "W_MX_RISKREPORT_NA_MR_REPORTS",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_MX_RISKREPORT_AMERICA_MR_LIMITS",
+          "predecessor": "W_MX_RISKREPORT_AMERICA_MR_LIMITS",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "W_MX_RISKREPORT_AMERICA_PDF_GENERATION",
+      "processingTemplate": "W_MX_RISKREPORT_AMERICA_PDF_GENERATION",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_MX_RISKREPORT_NA_MR_REPORTS",
+          "predecessor": "W_MX_RISKREPORT_NA_MR_REPORTS",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

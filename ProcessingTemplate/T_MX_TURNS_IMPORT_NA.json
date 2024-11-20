@@ -1,0 +1,20 @@
+{
+  "description": "Import of TURNS North America",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/scripts/MarketData\n./GlobalMarketDataExecute.sh -update -type:turns -file:PC_EOD_NAMERICAS_turns -date:TODAY"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "copy market data from PC_EOD_NAMERICAS to PC_IPV_NAMERICAS",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./xmlRequestWrapper.sh -s MD_COPY_PCIPV_NA -n FOD_NA -l ${LOG_FILE}"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "description": "12000|CLOSEDOWN AMERICA check_EOM exit 4: EOM",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_DMT_ACCRPL_NA_EOM",
+      "processingTemplate": "T_MX_DMT_ACCRPL_NA_EOM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_ACCRPL_NA_EOM"
+    },
+    {
+      "name": "T_MX_DMT_MTM_PL_NA2",
+      "processingTemplate": "T_MX_DMT_MTM_PL_NA2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_MTM_PL_NA2"
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_ACCRPL_NA_EOM",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_ACCRPL_NA_EOM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_ACCRPL_NA_EOM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_ACCRPL_NA_EOM",
+          "predecessor": "T_MX_DMT_ACCRPL_NA_EOM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_MTM_PL_NA2",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_MTM_PL_NA2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_MTM_PL_NA2",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_NA2",
+          "predecessor": "T_MX_DMT_MTM_PL_NA2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_ACCRPL_BSP_NA_EOM",
+      "processingTemplate": "T_MX_DMT_ACCRPL_BSP_NA_EOM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_ACCRPL_BSP_NA_EOM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_ACCRPL_NA_EOM",
+          "predecessor": "T_MX_GATHER_STATS_DMT_ACCRPL_NA_EOM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_NA2",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_NA2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_NA_EOM",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_NA_EOM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_NA_EOM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_ACCRPL_BSP_NA_EOM",
+          "predecessor": "T_MX_DMT_ACCRPL_BSP_NA_EOM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_NA_PSC_DMT_ACC_PLSD_LUT",
+      "processingTemplate": "T_MX_NA_PSC_DMT_ACC_PLSD_LUT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_NA_PSC_DMT_ACC_PLSD_LUT",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_NA_EOM",
+          "predecessor": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_NA_EOM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_ACC_PLSD_NA",
+      "processingTemplate": "T_MX_EXT_ACC_PLSD_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EXT_ACC_PLSD_NA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_NA_PSC_DMT_ACC_PLSD_LUT",
+          "predecessor": "T_MX_NA_PSC_DMT_ACC_PLSD_LUT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_AM_SHL_CHECK",
+      "processingTemplate": "T_MX_AM_SHL_CHECK",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_AM_SHL_CHECK",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_ACC_PLSD_NA",
+          "predecessor": "T_MX_EXT_ACC_PLSD_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

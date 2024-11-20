@@ -1,0 +1,369 @@
+{
+  "description": "12000|OPS failed settlement and failed settlement funding NA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_TRD_FAIL_SETL_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_TRD_FAIL_SETL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_TRD_FAIL_SETL_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_TRD_FSETL_AM-1",
+      "processingTemplate": "T_MX_TRD_FSETL_AM-1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TRD_FAIL_SETL_PS_AM",
+          "predecessor": "T_MX_TRD_FAIL_SETL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_WAIT_GENERIC",
+      "processingTemplate": "T_MX_WAIT_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FAILED_SETTLEMENT_DELAY60_NA",
+      "templateParameters": {
+        "WAIT_SECONDS": 60
+      }
+    },
+    {
+      "name": "T_MX_DLV_FAIL_SETL_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_DLV_FAIL_SETL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DLV_FAIL_SETL_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DLV_FSETL_AM-1",
+      "processingTemplate": "T_MX_DLV_FSETL_AM-1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DLV_FAIL_SETL_PS_AM",
+          "predecessor": "T_MX_DLV_FAIL_SETL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GCD_FAIL_SETL_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_GCD_FAIL_SETL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_GCD_FAIL_SETL_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_UDF_FAIL_SETL_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_UDF_FAIL_SETL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_UDF_FAIL_SETL_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FAIL_ACTUALFUND_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FAIL_ACTUALFUND_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FAIL_ACTUALFUND_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DLV_FSETL_AM-1",
+          "predecessor": "T_MX_DLV_FSETL_AM-1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GCD_FAIL_SETL_PS_AM",
+          "predecessor": "T_MX_GCD_FAIL_SETL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TRD_FSETL_AM-1",
+          "predecessor": "T_MX_TRD_FSETL_AM-1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_UDF_FAIL_SETL_PS_AM",
+          "predecessor": "T_MX_UDF_FAIL_SETL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FAIL_ACTUALFUND_NA-1",
+      "processingTemplate": "T_MX_FAIL_ACTUALFUND_NA-1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FAIL_ACTUALFUND_NA",
+          "predecessor": "T_MX_FAIL_ACTUALFUND_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_NA_LD",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_NA_LD",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_NA_LD",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FAIL_ACTUALFUND_NA-1",
+          "predecessor": "T_MX_FAIL_ACTUALFUND_NA-1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LD_FAIL_SETL_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_LD_FAIL_SETL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LD_FAIL_SETL_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_NA_LD",
+          "parent": "e4bd70ee-5d70-42a2-b388-f7bdbaced209",
+          "predecessor": "T_MX_CHECK_WF_NA_LD",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_NA_LD",
+          "parent": "e4bd70ee-5d70-42a2-b388-f7bdbaced209",
+          "predecessor": "T_MX_CHECK_WF_NA_LD",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "e4bd70ee-5d70-42a2-b388-f7bdbaced209",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FAIL_SETL_EX_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FAIL_SETL_EX_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FAIL_SETL_EX_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LD_FAIL_SETL_PS_AM",
+          "predecessor": "T_MX_LD_FAIL_SETL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPC_FSETL_EX_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPC_FSETL_EX_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPC_FSETL_EX_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LD_FAIL_SETL_PS_AM",
+          "predecessor": "T_MX_LD_FAIL_SETL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPC_FSETL_EX_PS_AM_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPC_FSETL_EX_PS_AM_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SPC_FSETL_EX_PS_AM_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPC_FSETL_EX_PS_AM",
+          "predecessor": "T_MX_SPC_FSETL_EX_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "description": "12000|Market data of late bond prices North America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_LATE_BONDPRICES_IMPORT_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LATE_BONDPRICES_IMPORT_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LATE_BONDPRICES_IMPORT_NA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_LATE_BONDPRICES_EXPORT_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LATE_BONDPRICES_EXPORT_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LATE_BONDPRICES_EXPORT_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LATE_BONDPRICES_IMPORT_NA",
+          "predecessor": "T_MX_LATE_BONDPRICES_IMPORT_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

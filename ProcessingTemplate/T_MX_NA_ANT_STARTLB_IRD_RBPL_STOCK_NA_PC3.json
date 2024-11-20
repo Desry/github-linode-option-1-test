@@ -1,0 +1,20 @@
+{
+  "description": "Livebook calculation set start IRD_RBPL_STOCK_NA_PC3",
+  "folder": "MX_EOD",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./lbkRequestWrapper.sh -b IRD_NA -s start -c IRD_RBPL_Stock_NA_PC3 -l ${LOG_FILE}"
+  }
+}

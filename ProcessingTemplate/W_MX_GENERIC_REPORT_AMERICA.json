@@ -1,0 +1,534 @@
+{
+  "description": "12000|End user reports",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_BROAD_DISCLOSURE_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_BROAD_DISCLOSURE_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_BD_PFOLIO_TREE_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_PFOLIO_TREE_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_PFOLIO_TREE_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_PFOLIO_TREE_PS_AM_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_PFOLIO_TREE_PS_AM_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_PFOLIO_TREE_PS_AM_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_PFOLIO_TREE_PS_AM",
+          "predecessor": "T_MX_BD_PFOLIO_TREE_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CUSTOD_TRD_PS_AM",
+      "processingTemplate": "T_MX_CUSTOD_TRD_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_CUSTOD_UDF_PS_AM",
+      "processingTemplate": "T_MX_CUSTOD_UDF_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CUSTOD_UDF_PS_AM"
+    },
+    {
+      "name": "T_MX_ED_TRD_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_ED_TRD_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_ED_TRD_PS_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_ED_MLC_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_ED_MLC_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_ED_MLC_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_ED_TRD_PS_AM",
+          "parent": "11813137-c80a-4e8a-a2b3-a7c9bb4701e2",
+          "predecessor": "T_MX_ED_TRD_PS_AM",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_ED_TRD_PS_AM",
+          "parent": "11813137-c80a-4e8a-a2b3-a7c9bb4701e2",
+          "predecessor": "T_MX_ED_TRD_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "11813137-c80a-4e8a-a2b3-a7c9bb4701e2",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FO_EOD_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FO_EOD_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FO_EOD_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_ED_MLC_PS_AM",
+          "parent": "a47b6e19-1bc3-4024-a23a-fd95cfa859ca",
+          "predecessor": "T_MX_ED_MLC_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_ED_MLC_PS_AM",
+          "parent": "a47b6e19-1bc3-4024-a23a-fd95cfa859ca",
+          "predecessor": "T_MX_ED_MLC_PS_AM",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "a47b6e19-1bc3-4024-a23a-fd95cfa859ca",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EM_TRD_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_EM_TRD_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_EM_TRD_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FO_EOD_PS_AM",
+          "parent": "d518d56a-3b6e-4747-bb4c-d3ec6d9c1bac",
+          "predecessor": "T_MX_FO_EOD_PS_AM",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FO_EOD_PS_AM",
+          "parent": "d518d56a-3b6e-4747-bb4c-d3ec6d9c1bac",
+          "predecessor": "T_MX_FO_EOD_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "d518d56a-3b6e-4747-bb4c-d3ec6d9c1bac",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_ED_SIM_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_ED_SIM_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_ED_SIM_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EM_TRD_PS_AM",
+          "parent": "e0f7ead6-7f47-4125-867b-9e5c8377e7b2",
+          "predecessor": "T_MX_EM_TRD_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EM_TRD_PS_AM",
+          "parent": "e0f7ead6-7f47-4125-867b-9e5c8377e7b2",
+          "predecessor": "T_MX_EM_TRD_PS_AM",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "e0f7ead6-7f47-4125-867b-9e5c8377e7b2",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MIS_CF_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MIS_CF_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MIS_CF_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_PFOLIO_TREE_PS_AM",
+          "predecessor": "T_MX_BD_PFOLIO_TREE_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_BND_PC_AM",
+      "processingTemplate": "T_MX_BD_BND_PC_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_BND_PC_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MIS_CF_NA",
+          "predecessor": "T_MX_MIS_CF_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TR_BND_PC_BF_AM",
+      "processingTemplate": "T_MX_TR_BND_PC_BF_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MIS_CF_NA",
+          "predecessor": "T_MX_MIS_CF_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_BND_PC_BE_AM",
+      "processingTemplate": "T_MX_BD_BND_PC_BE_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_BND_PC_AM",
+          "predecessor": "T_MX_BD_BND_PC_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TR_BND_PC_BF_AM",
+          "predecessor": "T_MX_TR_BND_PC_BF_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_BND_PC_AM_RENAME",
+      "processingTemplate": "T_MX_BD_BND_PC_AM_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_BND_PC_AM_RENAME",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_BND_PC_BE_AM",
+          "predecessor": "T_MX_BD_BND_PC_BE_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_WAIT_GENERIC",
+      "processingTemplate": "T_MX_WAIT_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_WAIT_GENERIC_REPORT_AMERICA",
+      "templateParameters": {
+        "WAIT_SECONDS": "10"
+      }
+    },
+    {
+      "name": "T_MX_CUSTOD_GCDS_PS_AM",
+      "processingTemplate": "T_MX_CUSTOD_GCDS_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CUSTOD_GCDS_PS_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CUSTOD_NOSTRO_PS_AM",
+      "processingTemplate": "T_MX_CUSTOD_NOSTRO_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CUSTOD_NOSTRO_PS_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CUSTOD_PS_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_CUSTOD_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CUSTOD_PS_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CUSTOD_GCDS_PS_AM",
+          "predecessor": "T_MX_CUSTOD_GCDS_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CUSTOD_NOSTRO_PS_AM",
+          "predecessor": "T_MX_CUSTOD_NOSTRO_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CUSTOD_TRD_PS_AM",
+          "predecessor": "T_MX_CUSTOD_TRD_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CUSTOD_UDF_PS_AM",
+          "predecessor": "T_MX_CUSTOD_UDF_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "W_MX_PNL_AMERICA.T_MX_DMT_TP_ALL_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "W_MX_PNL_AMERICA",
+          "workflowTemplateItem": "T_MX_DMT_TP_ALL_NA"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CUSTOD_PS_AM_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_CUSTOD_PS_AM_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CUSTOD_PS_AM_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CUSTOD_PS_AM",
+          "predecessor": "T_MX_CUSTOD_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

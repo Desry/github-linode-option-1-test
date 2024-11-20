@@ -1,0 +1,30 @@
+{
+  "description": "12000|exit code 3 or 4 or 6",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_FOM_ACC_NA_SUB_3_4_6",
+      "processingTemplate": "T_MX_FOM_ACC_NA_SUB_3_4_6",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FOM_ACC_NA_SUB_3_4_6"
+    }
+  ]
+}

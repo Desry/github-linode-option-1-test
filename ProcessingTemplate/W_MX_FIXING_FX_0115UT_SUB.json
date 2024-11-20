@@ -1,0 +1,96 @@
+{
+  "description": "20105|upload of FX fixing 01:15 LATAM indices",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "R_MX_IMPORT_FX_FIXINGS_GEN_0115",
+      "processingTemplate": "R_MX_IMPORT_FX_FIXINGS_GEN_0115",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_IMPORT_FX_FIXINGS_GEN_0115"
+    },
+    {
+      "name": "T_MX_IMPORT_FX_FIXINGS_GEN_0115",
+      "processingTemplate": "T_MX_IMPORT_FX_FIXINGS_GEN_0115",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_IMPORT_FX_FIXINGS_GEN_0115",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_IMPORT_FX_FIXINGS_GEN_0115",
+          "predecessor": "R_MX_IMPORT_FX_FIXINGS_GEN_0115",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "sensorType": "FILE_SENSOR",
+          "serverNodeType": "FILE_MANAGER",
+          "serviceType": "SENSOR"
+        }
+      ]
+    },
+    {
+      "name": "W_MX_FIX_TO_CACHE_FX_GENERIC",
+      "processingTemplate": "W_MX_FIX_TO_CACHE_FX_GENERIC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "W_MX_FIX_TO_CACHE_FX_0115",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IMPORT_FX_FIXINGS_GEN_0115",
+          "predecessor": "T_MX_IMPORT_FX_FIXINGS_GEN_0115",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PS_REPAIR_MRL_FX_0115",
+      "processingTemplate": "T_MX_PS_REPAIR_MRL_FX_0115",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_PS_REPAIR_MRL_FX_0115",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_MX_FIX_TO_CACHE_FX_GENERIC",
+          "predecessor": "W_MX_FIX_TO_CACHE_FX_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

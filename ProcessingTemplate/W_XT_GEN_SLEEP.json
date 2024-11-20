@@ -1,0 +1,67 @@
+{
+  "folder": "XT_MUREX_FUTURES",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "designParameters": 
+  [
+    {
+      "editorType": "NUMBER",
+      "name": "SleepTime",
+      "required": true,
+      "title": "SleepTime"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_XT_GEN_SLEEP",
+      "priority": "0",
+      "processingTemplate": "T_XT_GEN_SLEEP",
+      "processingType": "TASK",
+      "serverNodeType": "WINDOWS",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_XT_GEN_SLEEP",
+      "weight": "1"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_XT_GEN_INNER_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_XT_GEN_INNER_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "WINDOWS",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_XT_GEN_INNER_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_XT_GEN_SLEEP",
+          "predecessor": "T_XT_GEN_SLEEP",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "WINDOWS",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

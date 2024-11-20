@@ -1,0 +1,332 @@
+{
+  "description": "12000|Market data export for validation",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_MARKETDATA_IMPORT_AMERICA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_MARKETDATA_IMPORT_AMERICA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETRATESHEET_EXPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_EXPORT_AM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BONDPRICES_EXPORT_AM_SLEEP8",
+      "priority": "0",
+      "processingTemplate": "T_MX_BONDPRICES_EXPORT_AM_SLEEP8",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BONDPRICES_EXPORT_AM_SLEEP8",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BONDPRICES_EXPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BONDPRICES_EXPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BONDPRICES_EXPORT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BONDPRICES_EXPORT_AM_SLEEP8",
+          "predecessor": "T_MX_BONDPRICES_EXPORT_AM_SLEEP8",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FXSPOT_EXPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FXSPOT_EXPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FXSPOT_EXPORT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_HEDGECURVE_EXPORT_AM_SLEEP16",
+      "priority": "0",
+      "processingTemplate": "T_MX_HEDGECURVE_EXPORT_AM_SLEEP16",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_HEDGECURVE_EXPORT_AM_SLEEP16",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_HEDGECURVE_1Y_12M_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_HEDGECURVE_1Y_12M_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_HEDGECURVE_1Y_12M_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_HEDGECURVE_EXPORT_AM_SLEEP16",
+          "predecessor": "T_MX_HEDGECURVE_EXPORT_AM_SLEEP16",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_HEDGECURVE_ON_1D_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_HEDGECURVE_ON_1D_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_HEDGECURVE_ON_1D_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_HEDGECURVE_1Y_12M_AM",
+          "predecessor": "T_MX_HEDGECURVE_1Y_12M_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_INFLATIONCURVE_EXPORT_AM_SLEEP2",
+      "priority": "0",
+      "processingTemplate": "T_MX_INFLATIONCURVE_EXPORT_AM_SLEEP2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_INFLATIONCURVE_EXPORT_AM_SLEEP2",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_INFLATIONCURVE_EXPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_INFLATIONCURVE_EXPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_INFLATIONCURVE_EXPORT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_INFLATIONCURVE_EXPORT_AM_SLEEP2",
+          "predecessor": "T_MX_INFLATIONCURVE_EXPORT_AM_SLEEP2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_REVALUATIONRATECURVE_EXPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_REVALUATIONRATECURVE_EXPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_REVALUATIONRATECURVE_EXPORT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SECURITYPRICES_EXPORT_AM",
+      "priority": "0",
+      "processingTemplate": "T_MX_SECURITYPRICES_EXPORT_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SECURITYPRICES_EXPORT_AM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TURNS_EXPORT_NA_SLEEP14",
+      "priority": "0",
+      "processingTemplate": "T_MX_TURNS_EXPORT_NA_SLEEP14",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_TURNS_EXPORT_NA_SLEEP14",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TURNS_EXPORT_NA",
+      "priority": "0",
+      "processingTemplate": "T_MX_TURNS_EXPORT_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_TURNS_EXPORT_NA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TURNS_EXPORT_NA_SLEEP14",
+          "predecessor": "T_MX_TURNS_EXPORT_NA_SLEEP14",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

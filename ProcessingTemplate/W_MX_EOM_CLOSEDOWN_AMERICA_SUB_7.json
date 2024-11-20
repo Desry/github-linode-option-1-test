@@ -1,0 +1,96 @@
+{
+  "description": "12000|CLOSEDOWN AMERICA check_EOM exit 7: next BD after exit code 6",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_MO_EOD_CLOSEDOWN_NA4",
+      "processingTemplate": "T_MX_MO_EOD_CLOSEDOWN_NA4",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MO_EOD_CLOSEDOWN_NA4"
+    },
+    {
+      "name": "T_MX_MO_EOD_CLOSEDOWN_NA5",
+      "processingTemplate": "T_MX_MO_EOD_CLOSEDOWN_NA5",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MO_EOD_CLOSEDOWN_NA5",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MO_EOD_CLOSEDOWN_NA4",
+          "predecessor": "T_MX_MO_EOD_CLOSEDOWN_NA4",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MO_EOD_CLOSEDOWN_NA6",
+      "processingTemplate": "T_MX_MO_EOD_CLOSEDOWN_NA6",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MO_EOD_CLOSEDOWN_NA6",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MO_EOD_CLOSEDOWN_NA5",
+          "predecessor": "T_MX_MO_EOD_CLOSEDOWN_NA5",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LIMITATION_DATEMV_NA3",
+      "processingTemplate": "T_MX_LIMITATION_DATEMV_NA3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LIMITATION_DATEMV_NA3",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MO_EOD_CLOSEDOWN_NA6",
+          "predecessor": "T_MX_MO_EOD_CLOSEDOWN_NA6",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

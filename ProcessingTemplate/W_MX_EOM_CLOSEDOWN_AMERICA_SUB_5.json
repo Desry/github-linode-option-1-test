@@ -1,0 +1,74 @@
+{
+  "description": "12000|CLOSEDOWN AMERICA check_EOM exit 5: FOM",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_MO_EOD_CLOSEDOWN_NA2",
+      "processingTemplate": "T_MX_MO_EOD_CLOSEDOWN_NA2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MO_EOD_CLOSEDOWN_NA2"
+    },
+    {
+      "name": "T_MX_MO_EOD_CLOSEDOWN_NA3",
+      "processingTemplate": "T_MX_MO_EOD_CLOSEDOWN_NA3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MO_EOD_CLOSEDOWN_NA3",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MO_EOD_CLOSEDOWN_NA2",
+          "predecessor": "T_MX_MO_EOD_CLOSEDOWN_NA2",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LIMITATION_DATEMV_NA2",
+      "processingTemplate": "T_MX_LIMITATION_DATEMV_NA2",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LIMITATION_DATEMV_NA2",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MO_EOD_CLOSEDOWN_NA3",
+          "predecessor": "T_MX_MO_EOD_CLOSEDOWN_NA3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

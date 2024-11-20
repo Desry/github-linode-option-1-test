@@ -1,0 +1,90 @@
+{
+  "description": "20000|upload of IR fixing as of today option",
+  "folder": "MX_INTRADAY",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "INTRADAY"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_FIX_TO_CACHE_AS_IR",
+      "processingTemplate": "T_MX_FIX_TO_CACHE_AS_IR",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_FIX_TO_CACHE_EU_IR",
+      "processingTemplate": "T_MX_FIX_TO_CACHE_EU_IR",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FIX_TO_CACHE_AS_IR",
+          "predecessor": "T_MX_FIX_TO_CACHE_AS_IR",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FIX_TO_CACHE_AM_IR",
+      "processingTemplate": "T_MX_FIX_TO_CACHE_AM_IR",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FIX_TO_CACHE_EU_IR",
+          "predecessor": "T_MX_FIX_TO_CACHE_EU_IR",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FIX_TO_CACHE_SA_IR",
+      "processingTemplate": "T_MX_FIX_TO_CACHE_SA_IR",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FIX_TO_CACHE_AM_IR",
+          "predecessor": "T_MX_FIX_TO_CACHE_AM_IR",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "description": "12000|Market data copy realtime to DB FO",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_M_SCH_DATES_GENERIC",
+      "processingTemplate": "T_MX_M_SCH_DATES_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_M_SCH_DATES_COPYMDFO_RT_TO_DB_NA",
+      "templateParameters": {
+        "WAIT_SECONDS": "10"
+      }
+    },
+    {
+      "name": "T_MX_CHECK_NA_HOLIDAY",
+      "processingTemplate": "T_MX_CHECK_NA_HOLIDAY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_NA_HOLIDAY_COPYMDFO_RT_TO_DB_NA",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FINISHED",
+          "condition": {
+            "criteria": 
+            [
+              {
+                "fieldName": "exitCode",
+                "operator": "EQ_NUM",
+                "value": "4"
+              }
+            ],
+            "operator": "AND"
+          },
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "RELATED",
+            "forbidChildrenStart": false,
+            "forceChildren": true,
+            "keepForcedStatus": false,
+            "killChildren": false,
+            "operator": "",
+            "relation": {
+              "peer": "W_MX_COPYMDFO_RT_TO_DB_NA_SUB_1",
+              "relationType": "PEER"
+            },
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        },
+        {
+          "processingActionType": "ADD_TAG",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FINISHED",
+          "condition": {
+            "criteria": 
+            [
+              {
+                "fieldName": "exitCode",
+                "operator": "EQ_NUM",
+                "value": "4"
+              }
+            ],
+            "operator": "AND"
+          },
+          "processingCommand": {
+            "actionTargetType": "RELATED",
+            "keepForcedStatus": true,
+            "operator": "",
+            "relation": {
+              "peer": "W_MX_COPYMDFO_RT_TO_DB_NA_SUB_1",
+              "relationType": "PEER"
+            },
+            "restartType": "RESTART_FROM_BEGINNING",
+            "value": "SKIPPED"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_M_SCH_DATES_GENERIC",
+          "predecessor": "T_MX_M_SCH_DATES_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_WAIT_GENERIC",
+      "processingTemplate": "T_MX_WAIT_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_WAIT_GENERIC_COPYMDFO_RT_TO_DB_NA",
+      "templateParameters": {
+        "WAIT_SECONDS": "10"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_NA_HOLIDAY",
+          "predecessor": "T_MX_CHECK_NA_HOLIDAY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "W_MX_COPYMDFO_RT_TO_DB_NA_SUB_1",
+      "processingTemplate": "W_MX_COPYMDFO_RT_TO_DB_NA_SUB_1",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "description": "Check if pending reprocessing requests are available",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "CLC"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "SPF",
+      "editorType": "TEXT",
+      "hint": "REGION for which this workflow has to run",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    },
+    {
+      "defaultValue": "CLC",
+      "editorType": "TEXT",
+      "hint": "Occurrence of this workflow (DLY, CLC, etc.)",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC, etc.)"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "TJ_SPT_RPG_GET_PENDING",
+      "processingTemplate": "TJ_SPT_RPG_GET_PENDING",
+      "processingType": "TASK",
+      "serverNodeType": "ORACLE",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "RDBMS_SQL_STATEMENT",
+      "title": "JO_SPT_SPF_RPG_GET_PENDING_CLC",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FINISHED",
+          "condition": {
+            "criteria": 
+            [
+              {
+                "fieldName": "${COUNT_PENDING}",
+                "operator": "NE_NUM",
+                "value": "1"
+              },
+              {
+                "criteria": 
+                [
+                  {
+                    "fieldName": "${COUNT_PENDING}",
+                    "operator": "EQ_NUM",
+                    "value": "1"
+                  },
+                  {
+                    "criteria": 
+                    [
+                      {
+                        "fieldName": "${PROCESS}",
+                        "operator": "EQ",
+                        "value": "FIRE"
+                      }
+                    ],
+                    "operator": "AND"
+                  }
+                ],
+                "operator": "AND"
+              }
+            ],
+            "operator": "OR"
+          },
+          "processingCommand": {
+            "actionTargetType": "RELATED",
+            "operator": "",
+            "relation": {
+              "peer": "WF_SPT_SPF_START_RPG_DM_CLC",
+              "relationType": "PEER"
+            },
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        },
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FINISHED",
+          "condition": {
+            "criteria": 
+            [
+              {
+                "fieldName": "${COUNT_PENDING}",
+                "operator": "NE_NUM",
+                "value": "1"
+              },
+              {
+                "criteria": 
+                [
+                  {
+                    "fieldName": "${COUNT_PENDING}",
+                    "operator": "EQ_NUM",
+                    "value": "1"
+                  },
+                  {
+                    "fieldName": "${PROCESS}",
+                    "operator": "EQ",
+                    "value": "REPROCESS"
+                  }
+                ],
+                "operator": "AND"
+              }
+            ],
+            "operator": "OR"
+          },
+          "processingCommand": {
+            "actionTargetType": "RELATED",
+            "relation": {
+              "peer": "WF_SPT_SPF_START_RPG_FIRE_CLC",
+              "relationType": "PEER"
+            },
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "WF_SPT_SPF_START_RPG_DM_CLC",
+      "processingTemplate": "WF_SPT_SPF_START_RPG_DM_CLC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "WF_SPT_SPF_START_RPG_DM_CLC",
+      "workflowType": "STANDARD",
+      "actions": 
+      [
+        {
+          "processingActionType": "ADD_TAG",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FORCE_COMPLETED",
+          "processingCommand": {
+            "actionTargetType": "SELF",
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING",
+            "value": "Skipped"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_GET_PENDING",
+          "predecessor": "TJ_SPT_RPG_GET_PENDING",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "ORACLE",
+          "taskType": "RDBMS_SQL_STATEMENT"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "WF_SPT_SPF_START_RPG_FIRE_CLC",
+      "processingTemplate": "WF_SPT_SPF_START_RPG_FIRE_CLC",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "WF_SPT_SPF_START_RPG_FIRE_CLC",
+      "workflowType": "STANDARD",
+      "actions": 
+      [
+        {
+          "processingActionType": "ADD_TAG",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FORCE_COMPLETED",
+          "processingCommand": {
+            "actionTargetType": "SELF",
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING",
+            "value": "Skipped"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_RPG_GET_PENDING",
+          "predecessor": "TJ_SPT_RPG_GET_PENDING",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "ORACLE",
+          "taskType": "RDBMS_SQL_STATEMENT"
+        }
+      ]
+    }
+  ]
+}

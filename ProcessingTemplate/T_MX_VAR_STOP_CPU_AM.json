@@ -1,0 +1,20 @@
+{
+  "description": "VaR: Stops all engines for North America",
+  "folder": "MX_INTRADAY",
+  "node": "murex_appserver",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "INTRADAY"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "cd ${HOME}/eod_scripts\n./antRequestWrapper.sh -m public.mxres.mxmarketrisk_service.scripts.starter-Rabo.mxres -t stopCpuEod -j endpointId=\"CPU_NA\" -l ${LOG_FILE}"
+  }
+}

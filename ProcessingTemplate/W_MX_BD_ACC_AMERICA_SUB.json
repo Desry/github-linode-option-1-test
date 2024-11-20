@@ -1,0 +1,129 @@
+{
+  "description": "12000|BD Accounting EOD",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_FD_AM",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_FD_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH"
+    },
+    {
+      "name": "T_MX_BD_ACC_JOURNAL_PS_AM",
+      "processingTemplate": "T_MX_BD_ACC_JOURNAL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_ACC_JOURNAL_PS_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_FD_AM",
+          "predecessor": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_FD_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_AM",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_ACC_JOURNAL_PS_AM",
+          "predecessor": "T_MX_BD_ACC_JOURNAL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_ACC_JRNL_EX_PS_AM",
+      "processingTemplate": "T_MX_BD_ACC_JRNL_EX_PS_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_ACC_JRNL_EX_PS_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_AM",
+          "predecessor": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_2.T_MX_GATHER_STATS_BD_CA_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "W_MX_BROAD_DISCLOSURE_AMERICA_SUB_2",
+          "workflowTemplateItem": "T_MX_GATHER_STATS_BD_CA_PS_AM"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BROADDISCLOSE_ACCOUNTING_RENAMING_AM",
+      "processingTemplate": "T_MX_BROADDISCLOSE_ACCOUNTING_RENAMING_AM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BROADDISCLOSE_ACCOUNTING_RENAMING_AM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_ACC_JRNL_EX_PS_AM",
+          "predecessor": "T_MX_BD_ACC_JRNL_EX_PS_AM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

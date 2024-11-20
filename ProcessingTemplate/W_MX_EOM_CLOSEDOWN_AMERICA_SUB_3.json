@@ -1,0 +1,52 @@
+{
+  "description": "12000|CLOSEDOWN AMERICA check_EOM exit 3: BAU",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "NA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_MO_EOD_CLOSEDOWN_NA",
+      "processingTemplate": "T_MX_MO_EOD_CLOSEDOWN_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_MO_EOD_CLOSEDOWN_NA"
+    },
+    {
+      "name": "T_MX_LIMITATION_DATEMV_NA",
+      "processingTemplate": "T_MX_LIMITATION_DATEMV_NA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_LIMITATION_DATEMV_NA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MO_EOD_CLOSEDOWN_NA",
+          "predecessor": "T_MX_MO_EOD_CLOSEDOWN_NA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}
