@@ -1,0 +1,139 @@
+{
+  "description": "DAILY_DM_CASHFLOW_NF",
+  "owner": "api_user",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "DLY"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "WF_FDW_CHL_HIST_CASHFLOW_NF_DLY",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "WF_FDW_CHL_HIST_CASHFLOW_NF_DLY",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "WF_SPT_CHL_DM_DLY.TJ_SPT_POPULATION_STARTED",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "WF_SPT_CHL_DM_DLY",
+      "workflowTemplateItem": "TJ_SPT_POPULATION_STARTED"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "DLY",
+      "editorType": "TEXT",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC etc.,)"
+    },
+    {
+      "defaultValue": "CHL",
+      "editorType": "TEXT",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "TJ_SPT_INS_INT_RATE_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_INS_INT_RATE_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_CHL_INS_INT_RATE_SCHEDULES_S_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_SPT_TDE_LEG_PMNT_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_TDE_LEG_PMNT_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_CHL_TDE_LEG_PMNT_SCHEDULES_S_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_SPT_CASHFLOW_INSTRUMENTS_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_CASHFLOW_INSTRUMENTS_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_CHL_CASHFLOW_INSTRUMENTS_S_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_SPT_CASHFLOW_TRADES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_CASHFLOW_TRADES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_CHL_CASHFLOW_TRADES_S_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_SPT_TDE_LEG_INT_R_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_TDE_LEG_INT_R_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_CHL_TDE_LEG_INT_R_SCHEDULES_S_DLY",
+      "weight": "1"
+    },
+    {
+      "name": "TJ_SPT_INSTR_PAYMENT_SCHEDULES_S",
+      "priority": "0",
+      "processingTemplate": "TJ_SPT_INSTR_PAYMENT_SCHEDULES_S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "JO_SPT_CHL_INSTR_PAYMENT_SCHEDULES_S_DLY",
+      "weight": "1"
+    }
+  ]
+}
